@@ -80,6 +80,7 @@ data/tickets.json → contains 20 tickets
 
 ##  Output
 logs/<ticket_id>.json → individual ticket logs
+
 audit_log.json → complete execution trace
 
 ## Demo Video
