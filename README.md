@@ -90,6 +90,7 @@ python main.py
 * `audit_log.json` → full system trace
 
 ---
+## Demo Video
 
 ## Agent Flow
 
@@ -132,7 +133,8 @@ GEMINI_API_KEY=your_key
 
 ---
 
-## Demo
+## 🎬 Demo Video
+https://drive.google.com/file/d/1LdRQ85e2N89TzB8UEAIVLgneKlny-dSV/view?usp=drive_link
 
 Run the project and observe:
 
