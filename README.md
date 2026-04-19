@@ -40,6 +40,8 @@ The goal was to simulate how a real support system works — combining reasoning
 ## Project Structure
 
 
+
+```
 .
 ├── agent/ # reasoning, orchestrator, decision logic
 ├── tools/ # all tool implementations
@@ -52,8 +54,8 @@ The goal was to simulate how a real support system works — combining reasoning
 │ └── main.py # entry point
 ├── requirements.txt
 
+```
 
----
 
 ## Setup
 
