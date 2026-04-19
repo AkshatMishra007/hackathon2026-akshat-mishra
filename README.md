@@ -2,150 +2,124 @@
 
 ## Overview
 
-An agentic system that autonomously processes customer support tickets using a multi-step reasoning loop, tool execution, and decision engine.
+This project implements an agentic system that automatically processes customer support tickets.  
+Instead of a fixed pipeline, the system follows a **multi-step reasoning loop**, where it decides what to do next based on the current state.
+
+The goal was to simulate how a real support system works — combining reasoning, tool usage, and safe decision-making.
 
 ---
 
-## Features
+## Key Features
 
-* Multi-step reasoning (Thought → Action → Observation loop)
-* Tool chaining (≥ 3 tools per ticket)
-* Retry + timeout handling
-* Concurrent ticket processing using asyncio
-* Full audit logging
-* Safe execution with escalation fallback
-
----
-
-## Architecture
-
-The system consists of:
-
-1. Ticket Intake
-2. Agent Orchestrator
-3. Tool Layer
-4. Reliability Layer
-5. Execution + Audit
+- Multi-step reasoning (Thought → Action → Observation)
+- Tool chaining (multiple tools used per ticket)
+- Concurrent processing using asyncio workers
+- Retry handling and failure management
+- Full audit logging for transparency
+- Safe execution with escalation fallback
 
 ---
 
-## Tech Stack
+## How the System Works
 
-* Python (asyncio)
-* FastAPI (optional services)
-* Gemini / OpenAI (optional LLM)
-* JSON-based mock DB
+1. Tickets are loaded from `data/tickets.json`
+2. Each ticket is processed by a worker
+3. The agent:
+   - Thinks (decides next step)
+   - Calls tools (order, customer, refund, etc.)
+   - Stores observations
+4. A decision is made:
+   - refund
+   - reply
+   - escalate
+5. Action is executed safely
+6. All steps are logged
 
 ---
 
 ## Project Structure
 
-```
+
 .
-├── agent/
-├── tools/
-├── services/
-├── models/
-├── execution/
-├── data/
-├── logs/
-├── main.py
+├── agent/ # reasoning, orchestrator, decision logic
+├── tools/ # all tool implementations
+├── services/ # retry, logging, LLM services
+├── models/ # data models
+├── execution/ # worker system
+├── data/ # input tickets
+├── logs/ # generated logs
+├── app/
+│ └── main.py # entry point
 ├── requirements.txt
-├── README.md
-```
+
 
 ---
 
-## Setup Instructions
+## Setup
 
 ```bash
 git clone https://github.com/AkshatMishra007/hackathon2026-akshat-mishra.git
 cd hackathon2026-akshat-mishra
 
 python -m venv venv
-venv\Scripts\activate   # Windows
+venv\Scripts\activate
 
 pip install -r requirements.txt
 ```
 
----
-
-## Run the Project
-
+## Run the Project 
+ 
 ```bash
 python -m app.main
 
 ---
 
-## Input
+## Input  
 
-* `data/tickets.json` → 20 support tickets
+data/tickets.json → contains 20 tickets
 
----
+##  Output
+logs/<ticket_id>.json → individual ticket logs
+audit_log.json → complete execution trace
 
-## Output
-
-* `logs/<ticket_id>.json` → per-ticket logs
-* `audit_log.json` → full system trace
-
----
 ## Demo Video
 
-## Agent Flow
-
-1. Reasoning engine selects next tool
-2. Orchestrator executes with retry + validation
-3. Observations are stored in state
-4. Decision engine determines:
-
-   * refund
-   * reply
-   * escalate
-5. Action is executed safely
-
----
+https://drive.google.com/file/d/1LdRQ85e2N89TzB8UEAIVLgneKlny-dSV/view?usp=drive_link
 
 ## Failure Handling
 
-* Tool retries with backoff
-* Malformed data detection
-* Circuit breaker after repeated failures
-* Dead-letter queue for critical errors
+The system handles multiple failure scenarios:
 
----
+Retry logic for tool failures
+Handling malformed tool responses
+Circuit breaker after repeated errors
+Dead-letter logging for critical failures
+Re-check before irreversible actions (like refund)
 
 ## Concurrency
 
-* Worker pool processes multiple tickets concurrently using asyncio
-* Configurable via environment variables
-
----
+Multiple workers process tickets in parallel
+Implemented using asyncio queue
+Improves performance and realism
 
 ## Environment Variables (Optional)
 
-Create a `.env` file if using API-based reasoning:
-
-```
+If using API-based reasoning:
 OPENAI_API_KEY=your_key
+
 GEMINI_API_KEY=your_key
-```
 
----
+## What I Learned
 
-## 🎬 Demo Video
-https://drive.google.com/file/d/1LdRQ85e2N89TzB8UEAIVLgneKlny-dSV/view?usp=drive_link
-
-Run the project and observe:
-
-* Ticket processing in terminal
-* Logs generated in `/logs`
-* Full execution trace in `audit_log.json`
-
----
+This project helped me understand how real systems are not just about solving a problem once, but handling edge cases, failures, and making safe decisions step by step.
 
 ## Hackathon Requirements Covered
 
-* ≥ 3 tool calls per ticket
-* Full audit trail
-* Autonomous decision making
-* Robust failure handling
+≥ 3 tool calls per ticket
+Autonomous decision making
+Full audit logging
+Failure handling
+Concurrent processing
+
+---
+
