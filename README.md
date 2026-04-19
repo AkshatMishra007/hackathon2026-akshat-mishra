@@ -72,7 +72,7 @@ pip install -r requirements.txt
 ```bash
 python -m app.main
 
----
+```
 
 ## Input  
 
