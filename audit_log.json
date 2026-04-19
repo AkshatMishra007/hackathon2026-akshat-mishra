@@ -1,22 +1,22 @@
 [
   {
-    "ticket_id": "T-1004",
+    "ticket_id": "T-1003",
     "step_count": 3,
     "observations": {
       "order": {
         "found": true,
-        "order_id": "ORD-004",
-        "status": "lost",
-        "total_amount": 42.31,
+        "order_id": "ORD-003",
+        "status": "in_transit",
+        "total_amount": 43.63,
         "days_since_delivery": 999,
         "already_refunded": false
       },
       "customer": {
         "found": true,
-        "email": "dave@example.com",
-        "name": "Dave",
+        "email": "carol@example.com",
+        "name": "Carol",
         "segment": "regular",
-        "lifetime_value": 1066.59
+        "lifetime_value": 1295.63
       },
       "refund_eligibility": {
         "eligible": false,
@@ -32,168 +32,164 @@
       {
         "action": "get_order",
         "input": {
-          "order_id": "ORD-004"
+          "order_id": "ORD-003"
         },
         "output": {
           "found": true,
-          "order_id": "ORD-004",
-          "status": "lost",
-          "total_amount": 42.31,
+          "order_id": "ORD-003",
+          "status": "in_transit",
+          "total_amount": 43.63,
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.09731388092041016
+        "latency": 0.151824951171875
       },
       {
         "action": "get_customer",
         "input": {
-          "email": "dave@example.com"
+          "email": "carol@example.com"
         },
         "output": {
           "found": true,
-          "email": "dave@example.com",
-          "name": "Dave",
+          "email": "carol@example.com",
+          "name": "Carol",
           "segment": "regular",
-          "lifetime_value": 1066.59
+          "lifetime_value": 1295.63
         },
-        "latency": 0.20081448554992676
+        "latency": 0.15624761581420898
       },
       {
         "action": "check_refund_eligibility",
         "input": {
-          "order_id": "ORD-004",
-          "category": "wrong_item"
+          "order_id": "ORD-003",
+          "category": "product_query"
         },
         "output": {
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.0890357494354248
+        "latency": 0.07813072204589844
       },
       {
-        "action": "escalate",
+        "action": "send_reply",
         "output": {
           "ok": true,
-          "ticket_id": "T-1004",
-          "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
-          "priority": "normal"
+          "ticket_id": "T-1003",
+          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
         }
       }
     ],
     "errors": [],
     "final_decision": {
-      "decision": "escalate",
-      "confidence": 0.8,
+      "decision": "reply",
+      "confidence": 0.7000000000000001,
       "payload": {
-        "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
-        "priority": "normal"
+        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
       }
     },
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:56.738632Z",
+        "timestamp": "2026-04-19T15:11:10.763151Z",
         "event_type": "ticket_received",
         "content": {
-          "ticket_id": "T-1004"
+          "ticket_id": "T-1003"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.738689Z",
+        "timestamp": "2026-04-19T15:11:10.763151Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.836014Z",
+        "timestamp": "2026-04-19T15:11:10.914976Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
           "input": {
-            "order_id": "ORD-004"
+            "order_id": "ORD-003"
           },
           "output": {
             "found": true,
-            "order_id": "ORD-004",
-            "status": "lost",
-            "total_amount": 42.31,
+            "order_id": "ORD-003",
+            "status": "in_transit",
+            "total_amount": 43.63,
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.09731388092041016
+          "latency": 0.151824951171875
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.836036Z",
+        "timestamp": "2026-04-19T15:11:10.914976Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.036863Z",
+        "timestamp": "2026-04-19T15:11:11.071224Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
           "input": {
-            "email": "dave@example.com"
+            "email": "carol@example.com"
           },
           "output": {
             "found": true,
-            "email": "dave@example.com",
-            "name": "Dave",
+            "email": "carol@example.com",
+            "name": "Carol",
             "segment": "regular",
-            "lifetime_value": 1066.59
+            "lifetime_value": 1295.63
           },
-          "latency": 0.20081448554992676
+          "latency": 0.15624761581420898
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.036902Z",
+        "timestamp": "2026-04-19T15:11:11.071224Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.125952Z",
+        "timestamp": "2026-04-19T15:11:11.149354Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
           "input": {
-            "order_id": "ORD-004",
-            "category": "wrong_item"
+            "order_id": "ORD-003",
+            "category": "product_query"
           },
           "output": {
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.0890357494354248
+          "latency": 0.07813072204589844
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.125997Z",
+        "timestamp": "2026-04-19T15:11:11.149354Z",
         "event_type": "decision",
         "content": {
-          "decision": "escalate",
-          "confidence": 0.8,
+          "decision": "reply",
+          "confidence": 0.7000000000000001,
           "payload": {
-            "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
-            "priority": "normal"
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
           }
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.246152Z",
+        "timestamp": "2026-04-19T15:11:11.248456Z",
         "event_type": "action",
         "content": {
-          "name": "escalate",
+          "name": "send_reply",
           "output": {
             "ok": true,
-            "ticket_id": "T-1004",
-            "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
-            "priority": "normal"
+            "ticket_id": "T-1003",
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
           }
         }
       }
@@ -242,7 +238,7 @@
           "days_since_delivery": 22,
           "already_refunded": false
         },
-        "latency": 0.17509818077087402
+        "latency": 0.1034691333770752
       },
       {
         "action": "get_customer",
@@ -256,7 +252,7 @@
           "segment": "vip",
           "lifetime_value": 2906.27
         },
-        "latency": 0.3216702938079834
+        "latency": 0.15892910957336426
       },
       {
         "action": "check_refund_eligibility",
@@ -268,7 +264,7 @@
           "eligible": false,
           "reason": "outside_policy_or_refunded"
         },
-        "latency": 0.08214855194091797
+        "latency": 0.0937509536743164
       },
       {
         "action": "send_reply",
@@ -290,21 +286,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:56.738227Z",
+        "timestamp": "2026-04-19T15:11:10.746328Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1001"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.738247Z",
+        "timestamp": "2026-04-19T15:11:10.746328Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.913356Z",
+        "timestamp": "2026-04-19T15:11:10.849797Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -319,18 +315,18 @@
             "days_since_delivery": 22,
             "already_refunded": false
           },
-          "latency": 0.17509818077087402
+          "latency": 0.1034691333770752
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.913383Z",
+        "timestamp": "2026-04-19T15:11:10.849797Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.235064Z",
+        "timestamp": "2026-04-19T15:11:11.008726Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -344,18 +340,18 @@
             "segment": "vip",
             "lifetime_value": 2906.27
           },
-          "latency": 0.3216702938079834
+          "latency": 0.15892910957336426
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.235086Z",
+        "timestamp": "2026-04-19T15:11:11.008726Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.317244Z",
+        "timestamp": "2026-04-19T15:11:11.102477Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -367,11 +363,11 @@
             "eligible": false,
             "reason": "outside_policy_or_refunded"
           },
-          "latency": 0.08214855194091797
+          "latency": 0.0937509536743164
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.317285Z",
+        "timestamp": "2026-04-19T15:11:11.102477Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -382,7 +378,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.486302Z",
+        "timestamp": "2026-04-19T15:11:11.293767Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -438,7 +434,7 @@
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.07610559463500977
+        "latency": 0.21551966667175293
       },
       {
         "action": "get_customer",
@@ -452,7 +448,7 @@
           "segment": "regular",
           "lifetime_value": 190.55
         },
-        "latency": 0.16007065773010254
+        "latency": 0.14062952995300293
       },
       {
         "action": "check_refund_eligibility",
@@ -464,7 +460,7 @@
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.3830404281616211
+        "latency": 0.20348882675170898
       },
       {
         "action": "send_reply",
@@ -486,21 +482,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:56.738359Z",
+        "timestamp": "2026-04-19T15:11:10.746328Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1002"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.738379Z",
+        "timestamp": "2026-04-19T15:11:10.746328Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.814498Z",
+        "timestamp": "2026-04-19T15:11:10.961848Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -515,18 +511,18 @@
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.07610559463500977
+          "latency": 0.21551966667175293
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.814525Z",
+        "timestamp": "2026-04-19T15:11:10.961848Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.974617Z",
+        "timestamp": "2026-04-19T15:11:11.102477Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -540,18 +536,18 @@
             "segment": "regular",
             "lifetime_value": 190.55
           },
-          "latency": 0.16007065773010254
+          "latency": 0.14062952995300293
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.974633Z",
+        "timestamp": "2026-04-19T15:11:11.102477Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.357686Z",
+        "timestamp": "2026-04-19T15:11:11.305966Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -563,11 +559,11 @@
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.3830404281616211
+          "latency": 0.20348882675170898
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.357726Z",
+        "timestamp": "2026-04-19T15:11:11.305966Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -578,7 +574,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.578674Z",
+        "timestamp": "2026-04-19T15:11:11.516157Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -592,23 +588,23 @@
     ]
   },
   {
-    "ticket_id": "T-1003",
+    "ticket_id": "T-1004",
     "step_count": 3,
     "observations": {
       "order": {
         "found": true,
-        "order_id": "ORD-003",
-        "status": "in_transit",
-        "total_amount": 43.63,
+        "order_id": "ORD-004",
+        "status": "lost",
+        "total_amount": 42.31,
         "days_since_delivery": 999,
         "already_refunded": false
       },
       "customer": {
         "found": true,
-        "email": "carol@example.com",
-        "name": "Carol",
+        "email": "dave@example.com",
+        "name": "Dave",
         "segment": "regular",
-        "lifetime_value": 1295.63
+        "lifetime_value": 1066.59
       },
       "refund_eligibility": {
         "eligible": false,
@@ -624,164 +620,168 @@
       {
         "action": "get_order",
         "input": {
-          "order_id": "ORD-003"
+          "order_id": "ORD-004"
         },
         "output": {
           "found": true,
-          "order_id": "ORD-003",
-          "status": "in_transit",
-          "total_amount": 43.63,
+          "order_id": "ORD-004",
+          "status": "lost",
+          "total_amount": 42.31,
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.40801048278808594
+        "latency": 0.1862185001373291
       },
       {
         "action": "get_customer",
         "input": {
-          "email": "carol@example.com"
+          "email": "dave@example.com"
         },
         "output": {
           "found": true,
-          "email": "carol@example.com",
-          "name": "Carol",
+          "email": "dave@example.com",
+          "name": "Dave",
           "segment": "regular",
-          "lifetime_value": 1295.63
+          "lifetime_value": 1066.59
         },
-        "latency": 0.12798714637756348
+        "latency": 0.08647704124450684
       },
       {
         "action": "check_refund_eligibility",
         "input": {
-          "order_id": "ORD-003",
-          "category": "product_query"
+          "order_id": "ORD-004",
+          "category": "wrong_item"
         },
         "output": {
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.24770116806030273
+        "latency": 0.14365506172180176
       },
       {
-        "action": "send_reply",
+        "action": "escalate",
         "output": {
           "ok": true,
-          "ticket_id": "T-1003",
-          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+          "ticket_id": "T-1004",
+          "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
+          "priority": "normal"
         }
       }
     ],
     "errors": [],
     "final_decision": {
-      "decision": "reply",
-      "confidence": 0.7000000000000001,
+      "decision": "escalate",
+      "confidence": 0.8,
       "payload": {
-        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+        "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
+        "priority": "normal"
       }
     },
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:56.738489Z",
+        "timestamp": "2026-04-19T15:11:11.248456Z",
         "event_type": "ticket_received",
         "content": {
-          "ticket_id": "T-1003"
+          "ticket_id": "T-1004"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.738500Z",
+        "timestamp": "2026-04-19T15:11:11.248456Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.146521Z",
+        "timestamp": "2026-04-19T15:11:11.434674Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
           "input": {
-            "order_id": "ORD-003"
+            "order_id": "ORD-004"
           },
           "output": {
             "found": true,
-            "order_id": "ORD-003",
-            "status": "in_transit",
-            "total_amount": 43.63,
+            "order_id": "ORD-004",
+            "status": "lost",
+            "total_amount": 42.31,
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.40801048278808594
+          "latency": 0.1862185001373291
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.146552Z",
+        "timestamp": "2026-04-19T15:11:11.434674Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.274551Z",
+        "timestamp": "2026-04-19T15:11:11.521151Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
           "input": {
-            "email": "carol@example.com"
+            "email": "dave@example.com"
           },
           "output": {
             "found": true,
-            "email": "carol@example.com",
-            "name": "Carol",
+            "email": "dave@example.com",
+            "name": "Dave",
             "segment": "regular",
-            "lifetime_value": 1295.63
+            "lifetime_value": 1066.59
           },
-          "latency": 0.12798714637756348
+          "latency": 0.08647704124450684
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.274576Z",
+        "timestamp": "2026-04-19T15:11:11.521151Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.522291Z",
+        "timestamp": "2026-04-19T15:11:11.664807Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
           "input": {
-            "order_id": "ORD-003",
-            "category": "product_query"
+            "order_id": "ORD-004",
+            "category": "wrong_item"
           },
           "output": {
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.24770116806030273
+          "latency": 0.14365506172180176
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.522336Z",
+        "timestamp": "2026-04-19T15:11:11.664807Z",
         "event_type": "decision",
         "content": {
-          "decision": "reply",
-          "confidence": 0.7000000000000001,
+          "decision": "escalate",
+          "confidence": 0.8,
           "payload": {
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+            "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
+            "priority": "normal"
           }
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.706454Z",
+        "timestamp": "2026-04-19T15:11:11.765141Z",
         "event_type": "action",
         "content": {
-          "name": "send_reply",
+          "name": "escalate",
           "output": {
             "ok": true,
-            "ticket_id": "T-1003",
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+            "ticket_id": "T-1004",
+            "summary": "Escalate T-1004 due to risk/uncertainty; include full audit trail.",
+            "priority": "normal"
           }
         }
       }
@@ -830,7 +830,7 @@
           "days_since_delivery": 40,
           "already_refunded": false
         },
-        "latency": 0.22674202919006348
+        "latency": 0.24947547912597656
       },
       {
         "action": "get_customer",
@@ -844,7 +844,7 @@
           "segment": "regular",
           "lifetime_value": 3335.2
         },
-        "latency": 0.19287919998168945
+        "latency": 0.07770752906799316
       },
       {
         "action": "check_refund_eligibility",
@@ -856,7 +856,7 @@
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.5095231533050537
+        "latency": 0.06391167640686035
       },
       {
         "action": "send_reply",
@@ -878,21 +878,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:56.738866Z",
+        "timestamp": "2026-04-19T15:11:11.304965Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1005"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.738873Z",
+        "timestamp": "2026-04-19T15:11:11.304965Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.965625Z",
+        "timestamp": "2026-04-19T15:11:11.554440Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -907,18 +907,18 @@
             "days_since_delivery": 40,
             "already_refunded": false
           },
-          "latency": 0.22674202919006348
+          "latency": 0.24947547912597656
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:56.965651Z",
+        "timestamp": "2026-04-19T15:11:11.554440Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.158537Z",
+        "timestamp": "2026-04-19T15:11:11.632148Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -932,18 +932,18 @@
             "segment": "regular",
             "lifetime_value": 3335.2
           },
-          "latency": 0.19287919998168945
+          "latency": 0.07770752906799316
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.158557Z",
+        "timestamp": "2026-04-19T15:11:11.632148Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.668091Z",
+        "timestamp": "2026-04-19T15:11:11.696059Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -955,11 +955,11 @@
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.5095231533050537
+          "latency": 0.06391167640686035
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.668133Z",
+        "timestamp": "2026-04-19T15:11:11.696059Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -970,7 +970,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.876289Z",
+        "timestamp": "2026-04-19T15:11:11.815548Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -1026,7 +1026,7 @@
           "days_since_delivery": 35,
           "already_refunded": false
         },
-        "latency": 0.1869661808013916
+        "latency": 0.4427969455718994
       },
       {
         "action": "get_customer",
@@ -1040,7 +1040,7 @@
           "segment": "vip",
           "lifetime_value": 3071.01
         },
-        "latency": 0.23977375030517578
+        "latency": 0.1875004768371582
       },
       {
         "action": "check_refund_eligibility",
@@ -1052,7 +1052,7 @@
           "eligible": false,
           "reason": "outside_policy_or_refunded"
         },
-        "latency": 0.10273885726928711
+        "latency": 0.18133282661437988
       },
       {
         "action": "escalate",
@@ -1076,21 +1076,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.246322Z",
+        "timestamp": "2026-04-19T15:11:11.518154Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1006"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.246343Z",
+        "timestamp": "2026-04-19T15:11:11.518154Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.433319Z",
+        "timestamp": "2026-04-19T15:11:11.960951Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -1105,18 +1105,18 @@
             "days_since_delivery": 35,
             "already_refunded": false
           },
-          "latency": 0.1869661808013916
+          "latency": 0.4427969455718994
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.433340Z",
+        "timestamp": "2026-04-19T15:11:11.960951Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.673120Z",
+        "timestamp": "2026-04-19T15:11:12.148452Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -1130,18 +1130,18 @@
             "segment": "vip",
             "lifetime_value": 3071.01
           },
-          "latency": 0.23977375030517578
+          "latency": 0.1875004768371582
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.673135Z",
+        "timestamp": "2026-04-19T15:11:12.148452Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.775884Z",
+        "timestamp": "2026-04-19T15:11:12.329785Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -1153,11 +1153,11 @@
             "eligible": false,
             "reason": "outside_policy_or_refunded"
           },
-          "latency": 0.10273885726928711
+          "latency": 0.18133282661437988
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.775924Z",
+        "timestamp": "2026-04-19T15:11:12.329785Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
@@ -1169,7 +1169,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.907637Z",
+        "timestamp": "2026-04-19T15:11:12.470414Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
@@ -1226,7 +1226,7 @@
           "days_since_delivery": 41,
           "already_refunded": false
         },
-        "latency": 0.05666685104370117
+        "latency": 0.3777761459350586
       },
       {
         "action": "get_customer",
@@ -1240,7 +1240,7 @@
           "segment": "regular",
           "lifetime_value": 464.27
         },
-        "latency": 0.14878058433532715
+        "latency": 0.1032094955444336
       },
       {
         "action": "check_refund_eligibility",
@@ -1252,7 +1252,7 @@
           "eligible": false,
           "reason": "outside_policy_or_refunded"
         },
-        "latency": 0.19534063339233398
+        "latency": 0.24900102615356445
       },
       {
         "action": "escalate",
@@ -1276,21 +1276,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.578877Z",
+        "timestamp": "2026-04-19T15:11:11.816552Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1008"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.578916Z",
+        "timestamp": "2026-04-19T15:11:11.817551Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.635595Z",
+        "timestamp": "2026-04-19T15:11:12.195327Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -1305,18 +1305,18 @@
             "days_since_delivery": 41,
             "already_refunded": false
           },
-          "latency": 0.05666685104370117
+          "latency": 0.3777761459350586
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.635622Z",
+        "timestamp": "2026-04-19T15:11:12.195327Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.784415Z",
+        "timestamp": "2026-04-19T15:11:12.298537Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -1330,18 +1330,18 @@
             "segment": "regular",
             "lifetime_value": 464.27
           },
-          "latency": 0.14878058433532715
+          "latency": 0.1032094955444336
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.784443Z",
+        "timestamp": "2026-04-19T15:11:12.298537Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.979796Z",
+        "timestamp": "2026-04-19T15:11:12.547538Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -1353,11 +1353,11 @@
             "eligible": false,
             "reason": "outside_policy_or_refunded"
           },
-          "latency": 0.19534063339233398
+          "latency": 0.24900102615356445
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.979837Z",
+        "timestamp": "2026-04-19T15:11:12.547538Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
@@ -1369,7 +1369,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.042356Z",
+        "timestamp": "2026-04-19T15:11:12.610033Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
@@ -1426,7 +1426,7 @@
           "days_since_delivery": 25,
           "already_refunded": false
         },
-        "latency": 0.1168217658996582
+        "latency": 0.43018651008605957
       },
       {
         "action": "get_customer",
@@ -1440,7 +1440,7 @@
           "segment": "regular",
           "lifetime_value": 4023.43
         },
-        "latency": 0.22094464302062988
+        "latency": 0.1032094955444336
       },
       {
         "action": "check_refund_eligibility",
@@ -1452,7 +1452,7 @@
           "eligible": false,
           "reason": "outside_policy_or_refunded"
         },
-        "latency": 0.12628459930419922
+        "latency": 0.38233351707458496
       },
       {
         "action": "escalate",
@@ -1476,21 +1476,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.486524Z",
+        "timestamp": "2026-04-19T15:11:11.765141Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1007"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.486541Z",
+        "timestamp": "2026-04-19T15:11:11.765141Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.603376Z",
+        "timestamp": "2026-04-19T15:11:12.195327Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -1505,18 +1505,18 @@
             "days_since_delivery": 25,
             "already_refunded": false
           },
-          "latency": 0.1168217658996582
+          "latency": 0.43018651008605957
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.603411Z",
+        "timestamp": "2026-04-19T15:11:12.195327Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.824371Z",
+        "timestamp": "2026-04-19T15:11:12.298537Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -1530,18 +1530,18 @@
             "segment": "regular",
             "lifetime_value": 4023.43
           },
-          "latency": 0.22094464302062988
+          "latency": 0.1032094955444336
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.824402Z",
+        "timestamp": "2026-04-19T15:11:12.298537Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.950700Z",
+        "timestamp": "2026-04-19T15:11:12.680870Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -1553,11 +1553,11 @@
             "eligible": false,
             "reason": "outside_policy_or_refunded"
           },
-          "latency": 0.12628459930419922
+          "latency": 0.38233351707458496
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.950749Z",
+        "timestamp": "2026-04-19T15:11:12.680870Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
@@ -1569,7 +1569,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.153506Z",
+        "timestamp": "2026-04-19T15:11:12.790244Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
@@ -1626,7 +1626,7 @@
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.21487689018249512
+        "latency": 0.1396198272705078
       },
       {
         "action": "get_customer",
@@ -1640,7 +1640,7 @@
           "segment": "regular",
           "lifetime_value": 1944.89
         },
-        "latency": 0.19968628883361816
+        "latency": 0.13333797454833984
       },
       {
         "action": "check_refund_eligibility",
@@ -1652,7 +1652,7 @@
           "eligible": false,
           "reason": "order_not_in_eligible_status"
         },
-        "latency": 0.5497949123382568
+        "latency": 0.13752460479736328
       },
       {
         "action": "send_reply",
@@ -1674,21 +1674,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.706741Z",
+        "timestamp": "2026-04-19T15:11:12.470414Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1009"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.706758Z",
+        "timestamp": "2026-04-19T15:11:12.470414Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.921648Z",
+        "timestamp": "2026-04-19T15:11:12.610033Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -1703,18 +1703,18 @@
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.21487689018249512
+          "latency": 0.1396198272705078
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.921684Z",
+        "timestamp": "2026-04-19T15:11:12.610033Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.121387Z",
+        "timestamp": "2026-04-19T15:11:12.743372Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -1728,18 +1728,18 @@
             "segment": "regular",
             "lifetime_value": 1944.89
           },
-          "latency": 0.19968628883361816
+          "latency": 0.13333797454833984
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.121414Z",
+        "timestamp": "2026-04-19T15:11:12.743372Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.671222Z",
+        "timestamp": "2026-04-19T15:11:12.880896Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -1751,11 +1751,11 @@
             "eligible": false,
             "reason": "order_not_in_eligible_status"
           },
-          "latency": 0.5497949123382568
+          "latency": 0.13752460479736328
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.671258Z",
+        "timestamp": "2026-04-19T15:11:12.880896Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -1766,209 +1766,13 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.823561Z",
+        "timestamp": "2026-04-19T15:11:13.155825Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
           "output": {
             "ok": true,
             "ticket_id": "T-1009",
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "ticket_id": "T-1013",
-    "step_count": 3,
-    "observations": {
-      "order": {
-        "found": true,
-        "order_id": "ORD-013",
-        "status": "in_transit",
-        "total_amount": 128.27,
-        "days_since_delivery": 999,
-        "already_refunded": false
-      },
-      "customer": {
-        "found": true,
-        "email": "maya@example.com",
-        "name": "Maya",
-        "segment": "regular",
-        "lifetime_value": 197.29
-      },
-      "refund_eligibility": {
-        "eligible": false,
-        "reason": "order_not_delivered"
-      }
-    },
-    "thoughts": [
-      "Fetching order details for grounding.",
-      "Loading customer profile for risk/context.",
-      "Checking refund eligibility before further processing."
-    ],
-    "tool_history": [
-      {
-        "action": "get_order",
-        "input": {
-          "order_id": "ORD-013"
-        },
-        "output": {
-          "found": true,
-          "order_id": "ORD-013",
-          "status": "in_transit",
-          "total_amount": 128.27,
-          "days_since_delivery": 999,
-          "already_refunded": false
-        },
-        "latency": 0.1315476894378662
-      },
-      {
-        "action": "get_customer",
-        "input": {
-          "email": "maya@example.com"
-        },
-        "output": {
-          "found": true,
-          "email": "maya@example.com",
-          "name": "Maya",
-          "segment": "regular",
-          "lifetime_value": 197.29
-        },
-        "latency": 0.2070920467376709
-      },
-      {
-        "action": "check_refund_eligibility",
-        "input": {
-          "order_id": "ORD-013",
-          "category": "damaged_item"
-        },
-        "output": {
-          "eligible": false,
-          "reason": "order_not_delivered"
-        },
-        "latency": 0.18170642852783203
-      },
-      {
-        "action": "send_reply",
-        "output": {
-          "ok": true,
-          "ticket_id": "T-1013",
-          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-        }
-      }
-    ],
-    "errors": [],
-    "final_decision": {
-      "decision": "reply",
-      "confidence": 0.7000000000000001,
-      "payload": {
-        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-      }
-    },
-    "dead_letter": false,
-    "audit_trail": [
-      {
-        "timestamp": "2026-04-18T14:07:58.153670Z",
-        "event_type": "ticket_received",
-        "content": {
-          "ticket_id": "T-1013"
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.153693Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Fetching order details for grounding."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.285254Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_order",
-          "input": {
-            "order_id": "ORD-013"
-          },
-          "output": {
-            "found": true,
-            "order_id": "ORD-013",
-            "status": "in_transit",
-            "total_amount": 128.27,
-            "days_since_delivery": 999,
-            "already_refunded": false
-          },
-          "latency": 0.1315476894378662
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.285284Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Loading customer profile for risk/context."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.492404Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_customer",
-          "input": {
-            "email": "maya@example.com"
-          },
-          "output": {
-            "found": true,
-            "email": "maya@example.com",
-            "name": "Maya",
-            "segment": "regular",
-            "lifetime_value": 197.29
-          },
-          "latency": 0.2070920467376709
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.492438Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Checking refund eligibility before further processing."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.674155Z",
-        "event_type": "action",
-        "content": {
-          "name": "check_refund_eligibility",
-          "input": {
-            "order_id": "ORD-013",
-            "category": "damaged_item"
-          },
-          "output": {
-            "eligible": false,
-            "reason": "order_not_delivered"
-          },
-          "latency": 0.18170642852783203
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.674179Z",
-        "event_type": "decision",
-        "content": {
-          "decision": "reply",
-          "confidence": 0.7000000000000001,
-          "payload": {
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-          }
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.884465Z",
-        "event_type": "action",
-        "content": {
-          "name": "send_reply",
-          "output": {
-            "ok": true,
-            "ticket_id": "T-1013",
             "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
           }
         }
@@ -2018,7 +1822,7 @@
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.6323628425598145
+        "latency": 0.0906517505645752
       },
       {
         "action": "get_customer",
@@ -2032,7 +1836,7 @@
           "segment": "vip",
           "lifetime_value": 1046.38
         },
-        "latency": 0.18445539474487305
+        "latency": 0.0625002384185791
       },
       {
         "action": "check_refund_eligibility",
@@ -2044,7 +1848,7 @@
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.14195728302001953
+        "latency": 0.134307861328125
       },
       {
         "action": "send_reply",
@@ -2066,21 +1870,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.908015Z",
+        "timestamp": "2026-04-19T15:11:12.790244Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1011"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.908048Z",
+        "timestamp": "2026-04-19T15:11:12.790244Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.540424Z",
+        "timestamp": "2026-04-19T15:11:12.880896Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -2095,18 +1899,18 @@
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.6323628425598145
+          "latency": 0.0906517505645752
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.540453Z",
+        "timestamp": "2026-04-19T15:11:12.880896Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.724922Z",
+        "timestamp": "2026-04-19T15:11:12.943396Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -2120,18 +1924,18 @@
             "segment": "vip",
             "lifetime_value": 1046.38
           },
-          "latency": 0.18445539474487305
+          "latency": 0.0625002384185791
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.724953Z",
+        "timestamp": "2026-04-19T15:11:12.943396Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.866933Z",
+        "timestamp": "2026-04-19T15:11:13.077704Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -2143,11 +1947,11 @@
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.14195728302001953
+          "latency": 0.134307861328125
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.866959Z",
+        "timestamp": "2026-04-19T15:11:13.077704Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -2158,7 +1962,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.945774Z",
+        "timestamp": "2026-04-19T15:11:13.293404Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -2172,23 +1976,23 @@
     ]
   },
   {
-    "ticket_id": "T-1015",
+    "ticket_id": "T-1010",
     "step_count": 3,
     "observations": {
       "order": {
         "found": true,
-        "order_id": "ORD-015",
-        "status": "in_transit",
-        "total_amount": 69.49,
-        "days_since_delivery": 999,
+        "order_id": "ORD-010",
+        "status": "lost",
+        "total_amount": 30.04,
+        "days_since_delivery": 15,
         "already_refunded": false
       },
       "customer": {
         "found": true,
-        "email": "owen@example.com",
-        "name": "Owen",
+        "email": "john@example.com",
+        "name": "John",
         "segment": "regular",
-        "lifetime_value": 2952.49
+        "lifetime_value": 211.7
       },
       "refund_eligibility": {
         "eligible": false,
@@ -2204,50 +2008,50 @@
       {
         "action": "get_order",
         "input": {
-          "order_id": "ORD-015"
+          "order_id": "ORD-010"
         },
         "output": {
           "found": true,
-          "order_id": "ORD-015",
-          "status": "in_transit",
-          "total_amount": 69.49,
-          "days_since_delivery": 999,
+          "order_id": "ORD-010",
+          "status": "lost",
+          "total_amount": 30.04,
+          "days_since_delivery": 15,
           "already_refunded": false
         },
-        "latency": 0.05817604064941406
+        "latency": 0.22331881523132324
       },
       {
         "action": "get_customer",
         "input": {
-          "email": "owen@example.com"
+          "email": "john@example.com"
         },
         "output": {
           "found": true,
-          "email": "owen@example.com",
-          "name": "Owen",
+          "email": "john@example.com",
+          "name": "John",
           "segment": "regular",
-          "lifetime_value": 2952.49
+          "lifetime_value": 211.7
         },
-        "latency": 0.05747628211975098
+        "latency": 0.2433462142944336
       },
       {
         "action": "check_refund_eligibility",
         "input": {
-          "order_id": "ORD-015",
-          "category": "fraud_claim"
+          "order_id": "ORD-010",
+          "category": "delivery_issue"
         },
         "output": {
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.16765403747558594
+        "latency": 0.2156996726989746
       },
       {
         "action": "escalate",
         "output": {
           "ok": true,
-          "ticket_id": "T-1015",
-          "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+          "ticket_id": "T-1010",
+          "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
           "priority": "high"
         }
       }
@@ -2257,114 +2061,114 @@
       "decision": "escalate",
       "confidence": 0.8,
       "payload": {
-        "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+        "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
         "priority": "high"
       }
     },
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:58.884722Z",
+        "timestamp": "2026-04-19T15:11:12.610033Z",
         "event_type": "ticket_received",
         "content": {
-          "ticket_id": "T-1015"
+          "ticket_id": "T-1010"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.884738Z",
+        "timestamp": "2026-04-19T15:11:12.610033Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.942923Z",
+        "timestamp": "2026-04-19T15:11:12.833352Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
           "input": {
-            "order_id": "ORD-015"
+            "order_id": "ORD-010"
           },
           "output": {
             "found": true,
-            "order_id": "ORD-015",
-            "status": "in_transit",
-            "total_amount": 69.49,
-            "days_since_delivery": 999,
+            "order_id": "ORD-010",
+            "status": "lost",
+            "total_amount": 30.04,
+            "days_since_delivery": 15,
             "already_refunded": false
           },
-          "latency": 0.05817604064941406
+          "latency": 0.22331881523132324
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.942947Z",
+        "timestamp": "2026-04-19T15:11:12.833352Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.000433Z",
+        "timestamp": "2026-04-19T15:11:13.077704Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
           "input": {
-            "email": "owen@example.com"
+            "email": "john@example.com"
           },
           "output": {
             "found": true,
-            "email": "owen@example.com",
-            "name": "Owen",
+            "email": "john@example.com",
+            "name": "John",
             "segment": "regular",
-            "lifetime_value": 2952.49
+            "lifetime_value": 211.7
           },
-          "latency": 0.05747628211975098
+          "latency": 0.2433462142944336
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.000463Z",
+        "timestamp": "2026-04-19T15:11:13.077704Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.168126Z",
+        "timestamp": "2026-04-19T15:11:13.293404Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
           "input": {
-            "order_id": "ORD-015",
-            "category": "fraud_claim"
+            "order_id": "ORD-010",
+            "category": "delivery_issue"
           },
           "output": {
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.16765403747558594
+          "latency": 0.2156996726989746
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.168157Z",
+        "timestamp": "2026-04-19T15:11:13.293404Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
           "confidence": 0.8,
           "payload": {
-            "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+            "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
             "priority": "high"
           }
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.231930Z",
+        "timestamp": "2026-04-19T15:11:13.363770Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
           "output": {
             "ok": true,
-            "ticket_id": "T-1015",
-            "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+            "ticket_id": "T-1010",
+            "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
             "priority": "high"
           }
         }
@@ -2414,7 +2218,7 @@
           "days_since_delivery": 25,
           "already_refunded": false
         },
-        "latency": 0.42606282234191895
+        "latency": 0.10632848739624023
       },
       {
         "action": "get_customer",
@@ -2428,7 +2232,7 @@
           "segment": "regular",
           "lifetime_value": 2313.67
         },
-        "latency": 0.4238548278808594
+        "latency": 0.16979217529296875
       },
       {
         "action": "check_refund_eligibility",
@@ -2440,7 +2244,7 @@
           "eligible": false,
           "reason": "outside_policy_or_refunded"
         },
-        "latency": 0.20471715927124023
+        "latency": 0.1875011920928955
       },
       {
         "action": "send_reply",
@@ -2462,21 +2266,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:58.042609Z",
+        "timestamp": "2026-04-19T15:11:13.155825Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1012"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.042636Z",
+        "timestamp": "2026-04-19T15:11:13.155825Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.468709Z",
+        "timestamp": "2026-04-19T15:11:13.262153Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -2491,18 +2295,18 @@
             "days_since_delivery": 25,
             "already_refunded": false
           },
-          "latency": 0.42606282234191895
+          "latency": 0.10632848739624023
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.468729Z",
+        "timestamp": "2026-04-19T15:11:13.262153Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.892591Z",
+        "timestamp": "2026-04-19T15:11:13.431945Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -2516,18 +2320,18 @@
             "segment": "regular",
             "lifetime_value": 2313.67
           },
-          "latency": 0.4238548278808594
+          "latency": 0.16979217529296875
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.892612Z",
+        "timestamp": "2026-04-19T15:11:13.431945Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.097339Z",
+        "timestamp": "2026-04-19T15:11:13.619447Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -2539,11 +2343,11 @@
             "eligible": false,
             "reason": "outside_policy_or_refunded"
           },
-          "latency": 0.20471715927124023
+          "latency": 0.1875011920928955
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.097373Z",
+        "timestamp": "2026-04-19T15:11:13.619447Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -2554,7 +2358,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.300550Z",
+        "timestamp": "2026-04-19T15:11:13.822567Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -2568,23 +2372,23 @@
     ]
   },
   {
-    "ticket_id": "T-1010",
-    "step_count": 4,
+    "ticket_id": "T-1013",
+    "step_count": 3,
     "observations": {
       "order": {
         "found": true,
-        "order_id": "ORD-010",
-        "status": "lost",
-        "total_amount": 30.04,
-        "days_since_delivery": 15,
+        "order_id": "ORD-013",
+        "status": "in_transit",
+        "total_amount": 128.27,
+        "days_since_delivery": 999,
         "already_refunded": false
       },
       "customer": {
         "found": true,
-        "email": "john@example.com",
-        "name": "John",
+        "email": "maya@example.com",
+        "name": "Maya",
         "segment": "regular",
-        "lifetime_value": 211.7
+        "lifetime_value": 197.29
       },
       "refund_eligibility": {
         "eligible": false,
@@ -2593,6 +2397,201 @@
     },
     "thoughts": [
       "Fetching order details for grounding.",
+      "Loading customer profile for risk/context.",
+      "Checking refund eligibility before further processing."
+    ],
+    "tool_history": [
+      {
+        "action": "get_order",
+        "input": {
+          "order_id": "ORD-013"
+        },
+        "output": {
+          "found": true,
+          "order_id": "ORD-013",
+          "status": "in_transit",
+          "total_amount": 128.27,
+          "days_since_delivery": 999,
+          "already_refunded": false
+        },
+        "latency": 0.07036566734313965
+      },
+      {
+        "action": "get_customer",
+        "input": {
+          "email": "maya@example.com"
+        },
+        "output": {
+          "found": true,
+          "email": "maya@example.com",
+          "name": "Maya",
+          "segment": "regular",
+          "lifetime_value": 197.29
+        },
+        "latency": 0.22442293167114258
+      },
+      {
+        "action": "check_refund_eligibility",
+        "input": {
+          "order_id": "ORD-013",
+          "category": "damaged_item"
+        },
+        "output": {
+          "eligible": false,
+          "reason": "order_not_delivered"
+        },
+        "latency": 0.234375
+      },
+      {
+        "action": "send_reply",
+        "output": {
+          "ok": true,
+          "ticket_id": "T-1013",
+          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+        }
+      }
+    ],
+    "errors": [],
+    "final_decision": {
+      "decision": "reply",
+      "confidence": 0.7000000000000001,
+      "payload": {
+        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+      }
+    },
+    "dead_letter": false,
+    "audit_trail": [
+      {
+        "timestamp": "2026-04-19T15:11:13.293404Z",
+        "event_type": "ticket_received",
+        "content": {
+          "ticket_id": "T-1013"
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.293404Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Fetching order details for grounding."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.363770Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_order",
+          "input": {
+            "order_id": "ORD-013"
+          },
+          "output": {
+            "found": true,
+            "order_id": "ORD-013",
+            "status": "in_transit",
+            "total_amount": 128.27,
+            "days_since_delivery": 999,
+            "already_refunded": false
+          },
+          "latency": 0.07036566734313965
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.363770Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Loading customer profile for risk/context."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.588192Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_customer",
+          "input": {
+            "email": "maya@example.com"
+          },
+          "output": {
+            "found": true,
+            "email": "maya@example.com",
+            "name": "Maya",
+            "segment": "regular",
+            "lifetime_value": 197.29
+          },
+          "latency": 0.22442293167114258
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.588192Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Checking refund eligibility before further processing."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.822567Z",
+        "event_type": "action",
+        "content": {
+          "name": "check_refund_eligibility",
+          "input": {
+            "order_id": "ORD-013",
+            "category": "damaged_item"
+          },
+          "output": {
+            "eligible": false,
+            "reason": "order_not_delivered"
+          },
+          "latency": 0.234375
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.822567Z",
+        "event_type": "decision",
+        "content": {
+          "decision": "reply",
+          "confidence": 0.7000000000000001,
+          "payload": {
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+          }
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.226727Z",
+        "event_type": "action",
+        "content": {
+          "name": "send_reply",
+          "output": {
+            "ok": true,
+            "ticket_id": "T-1013",
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "ticket_id": "T-1014",
+    "step_count": 3,
+    "observations": {
+      "order": {
+        "found": true,
+        "order_id": "ORD-014",
+        "status": "lost",
+        "total_amount": 58.2,
+        "days_since_delivery": 999,
+        "already_refunded": false
+      },
+      "customer": {
+        "found": true,
+        "email": "nina@example.com",
+        "name": "Nina",
+        "segment": "regular",
+        "lifetime_value": 958.86
+      },
+      "refund_eligibility": {
+        "eligible": false,
+        "reason": "order_not_delivered"
+      }
+    },
+    "thoughts": [
       "Fetching order details for grounding.",
       "Loading customer profile for risk/context.",
       "Checking refund eligibility before further processing."
@@ -2601,183 +2600,367 @@
       {
         "action": "get_order",
         "input": {
-          "order_id": "ORD-010"
+          "order_id": "ORD-014"
         },
         "output": {
           "found": true,
-          "order_id": "ORD-010",
+          "order_id": "ORD-014",
           "status": "lost",
-          "total_amount": 30.04,
-          "days_since_delivery": 15,
+          "total_amount": 58.2,
+          "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.23250746726989746
+        "latency": 0.0994272232055664
       },
       {
         "action": "get_customer",
         "input": {
-          "email": "john@example.com"
+          "email": "nina@example.com"
         },
         "output": {
           "found": true,
-          "email": "john@example.com",
-          "name": "John",
+          "email": "nina@example.com",
+          "name": "Nina",
           "segment": "regular",
-          "lifetime_value": 211.7
+          "lifetime_value": 958.86
         },
-        "latency": 0.48430967330932617
+        "latency": 0.4354071617126465
       },
       {
         "action": "check_refund_eligibility",
         "input": {
-          "order_id": "ORD-010",
-          "category": "delivery_issue"
+          "order_id": "ORD-014",
+          "category": "legal"
         },
         "output": {
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.14551472663879395
+        "latency": 0.4632589817047119
       },
       {
         "action": "escalate",
         "output": {
           "ok": true,
-          "ticket_id": "T-1010",
-          "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
+          "ticket_id": "T-1014",
+          "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
           "priority": "high"
         }
       }
     ],
-    "errors": [
-      "tool_failure:get_order:get_order: transient failure"
-    ],
+    "errors": [],
     "final_decision": {
       "decision": "escalate",
       "confidence": 0.8,
       "payload": {
-        "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
+        "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
         "priority": "high"
       }
     },
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:57.876596Z",
+        "timestamp": "2026-04-19T15:11:13.363770Z",
         "event_type": "ticket_received",
         "content": {
-          "ticket_id": "T-1010"
+          "ticket_id": "T-1014"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:57.876616Z",
+        "timestamp": "2026-04-19T15:11:13.363770Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.381829Z",
-        "event_type": "error",
-        "content": {
-          "message": "tool_failure:get_order:get_order: transient failure"
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.381861Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Fetching order details for grounding."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.614384Z",
+        "timestamp": "2026-04-19T15:11:13.463197Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
           "input": {
-            "order_id": "ORD-010"
+            "order_id": "ORD-014"
           },
           "output": {
             "found": true,
-            "order_id": "ORD-010",
+            "order_id": "ORD-014",
             "status": "lost",
-            "total_amount": 30.04,
-            "days_since_delivery": 15,
+            "total_amount": 58.2,
+            "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.23250746726989746
+          "latency": 0.0994272232055664
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.614413Z",
+        "timestamp": "2026-04-19T15:11:13.463197Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.098735Z",
+        "timestamp": "2026-04-19T15:11:13.898604Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
           "input": {
-            "email": "john@example.com"
+            "email": "nina@example.com"
           },
           "output": {
             "found": true,
-            "email": "john@example.com",
-            "name": "John",
+            "email": "nina@example.com",
+            "name": "Nina",
             "segment": "regular",
-            "lifetime_value": 211.7
+            "lifetime_value": 958.86
           },
-          "latency": 0.48430967330932617
+          "latency": 0.4354071617126465
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.098756Z",
+        "timestamp": "2026-04-19T15:11:13.898604Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.244279Z",
+        "timestamp": "2026-04-19T15:11:14.361863Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
           "input": {
-            "order_id": "ORD-010",
-            "category": "delivery_issue"
+            "order_id": "ORD-014",
+            "category": "legal"
           },
           "output": {
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.14551472663879395
+          "latency": 0.4632589817047119
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.244309Z",
+        "timestamp": "2026-04-19T15:11:14.361863Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
           "confidence": 0.8,
           "payload": {
-            "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
+            "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
             "priority": "high"
           }
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.405592Z",
+        "timestamp": "2026-04-19T15:11:14.618473Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
           "output": {
             "ok": true,
-            "ticket_id": "T-1010",
-            "summary": "Escalate T-1010 due to risk/uncertainty; include full audit trail.",
+            "ticket_id": "T-1014",
+            "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
+            "priority": "high"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "ticket_id": "T-1015",
+    "step_count": 3,
+    "observations": {
+      "order": {
+        "found": true,
+        "order_id": "ORD-015",
+        "status": "in_transit",
+        "total_amount": 69.49,
+        "days_since_delivery": 999,
+        "already_refunded": false
+      },
+      "customer": {
+        "found": true,
+        "email": "owen@example.com",
+        "name": "Owen",
+        "segment": "regular",
+        "lifetime_value": 2952.49
+      },
+      "refund_eligibility": {
+        "eligible": false,
+        "reason": "order_not_delivered"
+      }
+    },
+    "thoughts": [
+      "Fetching order details for grounding.",
+      "Loading customer profile for risk/context.",
+      "Checking refund eligibility before further processing."
+    ],
+    "tool_history": [
+      {
+        "action": "get_order",
+        "input": {
+          "order_id": "ORD-015"
+        },
+        "output": {
+          "found": true,
+          "order_id": "ORD-015",
+          "status": "in_transit",
+          "total_amount": 69.49,
+          "days_since_delivery": 999,
+          "already_refunded": false
+        },
+        "latency": 0.13853788375854492
+      },
+      {
+        "action": "get_customer",
+        "input": {
+          "email": "owen@example.com"
+        },
+        "output": {
+          "found": true,
+          "email": "owen@example.com",
+          "name": "Owen",
+          "segment": "regular",
+          "lifetime_value": 2952.49
+        },
+        "latency": 0.5011179447174072
+      },
+      {
+        "action": "check_refund_eligibility",
+        "input": {
+          "order_id": "ORD-015",
+          "category": "fraud_claim"
+        },
+        "output": {
+          "eligible": false,
+          "reason": "order_not_delivered"
+        },
+        "latency": 0.0937509536743164
+      },
+      {
+        "action": "escalate",
+        "output": {
+          "ok": true,
+          "ticket_id": "T-1015",
+          "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+          "priority": "high"
+        }
+      }
+    ],
+    "errors": [],
+    "final_decision": {
+      "decision": "escalate",
+      "confidence": 0.8,
+      "payload": {
+        "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+        "priority": "high"
+      }
+    },
+    "dead_letter": false,
+    "audit_trail": [
+      {
+        "timestamp": "2026-04-19T15:11:13.822567Z",
+        "event_type": "ticket_received",
+        "content": {
+          "ticket_id": "T-1015"
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.822567Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Fetching order details for grounding."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.961105Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_order",
+          "input": {
+            "order_id": "ORD-015"
+          },
+          "output": {
+            "found": true,
+            "order_id": "ORD-015",
+            "status": "in_transit",
+            "total_amount": 69.49,
+            "days_since_delivery": 999,
+            "already_refunded": false
+          },
+          "latency": 0.13853788375854492
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:13.961105Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Loading customer profile for risk/context."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.462223Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_customer",
+          "input": {
+            "email": "owen@example.com"
+          },
+          "output": {
+            "found": true,
+            "email": "owen@example.com",
+            "name": "Owen",
+            "segment": "regular",
+            "lifetime_value": 2952.49
+          },
+          "latency": 0.5011179447174072
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.462223Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Checking refund eligibility before further processing."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.555974Z",
+        "event_type": "action",
+        "content": {
+          "name": "check_refund_eligibility",
+          "input": {
+            "order_id": "ORD-015",
+            "category": "fraud_claim"
+          },
+          "output": {
+            "eligible": false,
+            "reason": "order_not_delivered"
+          },
+          "latency": 0.0937509536743164
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.555974Z",
+        "event_type": "decision",
+        "content": {
+          "decision": "escalate",
+          "confidence": 0.8,
+          "payload": {
+            "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
+            "priority": "high"
+          }
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.807102Z",
+        "event_type": "action",
+        "content": {
+          "name": "escalate",
+          "output": {
+            "ok": true,
+            "ticket_id": "T-1015",
+            "summary": "Escalate T-1015 due to risk/uncertainty; include full audit trail.",
             "priority": "high"
           }
         }
@@ -2827,7 +3010,7 @@
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.18426918983459473
+        "latency": 0.13513565063476562
       },
       {
         "action": "get_customer",
@@ -2841,7 +3024,7 @@
           "segment": "vip",
           "lifetime_value": 2488.64
         },
-        "latency": 0.08205556869506836
+        "latency": 0.06911540031433105
       },
       {
         "action": "check_refund_eligibility",
@@ -2853,7 +3036,7 @@
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.15423130989074707
+        "latency": 0.26674556732177734
       },
       {
         "action": "escalate",
@@ -2877,21 +3060,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:58.945977Z",
+        "timestamp": "2026-04-19T15:11:14.226727Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1016"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:58.945990Z",
+        "timestamp": "2026-04-19T15:11:14.226727Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.130268Z",
+        "timestamp": "2026-04-19T15:11:14.361863Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -2906,18 +3089,18 @@
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.18426918983459473
+          "latency": 0.13513565063476562
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.130290Z",
+        "timestamp": "2026-04-19T15:11:14.361863Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.212354Z",
+        "timestamp": "2026-04-19T15:11:14.430978Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -2931,18 +3114,18 @@
             "segment": "vip",
             "lifetime_value": 2488.64
           },
-          "latency": 0.08205556869506836
+          "latency": 0.06911540031433105
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.212378Z",
+        "timestamp": "2026-04-19T15:11:14.430978Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.366618Z",
+        "timestamp": "2026-04-19T15:11:14.697724Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -2954,11 +3137,11 @@
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.15423130989074707
+          "latency": 0.26674556732177734
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.366648Z",
+        "timestamp": "2026-04-19T15:11:14.697724Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
@@ -2970,7 +3153,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.615773Z",
+        "timestamp": "2026-04-19T15:11:14.900843Z",
         "event_type": "action",
         "content": {
           "name": "escalate",
@@ -2979,202 +3162,6 @@
             "ticket_id": "T-1016",
             "summary": "Escalate T-1016 due to risk/uncertainty; include full audit trail.",
             "priority": "high"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "ticket_id": "T-1018",
-    "step_count": 3,
-    "observations": {
-      "order": {
-        "found": true,
-        "order_id": "ORD-018",
-        "status": "delivered",
-        "total_amount": 58.38,
-        "days_since_delivery": 25,
-        "already_refunded": false
-      },
-      "customer": {
-        "found": true,
-        "email": "rita@example.com",
-        "name": "Rita",
-        "segment": "regular",
-        "lifetime_value": 2684.55
-      },
-      "refund_eligibility": {
-        "eligible": false,
-        "reason": "outside_policy_or_refunded"
-      }
-    },
-    "thoughts": [
-      "Fetching order details for grounding.",
-      "Loading customer profile for risk/context.",
-      "Checking refund eligibility before further processing."
-    ],
-    "tool_history": [
-      {
-        "action": "get_order",
-        "input": {
-          "order_id": "ORD-018"
-        },
-        "output": {
-          "found": true,
-          "order_id": "ORD-018",
-          "status": "delivered",
-          "total_amount": 58.38,
-          "days_since_delivery": 25,
-          "already_refunded": false
-        },
-        "latency": 0.13910961151123047
-      },
-      {
-        "action": "get_customer",
-        "input": {
-          "email": "rita@example.com"
-        },
-        "output": {
-          "found": true,
-          "email": "rita@example.com",
-          "name": "Rita",
-          "segment": "regular",
-          "lifetime_value": 2684.55
-        },
-        "latency": 0.11959242820739746
-      },
-      {
-        "action": "check_refund_eligibility",
-        "input": {
-          "order_id": "ORD-018",
-          "category": "delivery_issue"
-        },
-        "output": {
-          "eligible": false,
-          "reason": "outside_policy_or_refunded"
-        },
-        "latency": 0.13339567184448242
-      },
-      {
-        "action": "send_reply",
-        "output": {
-          "ok": true,
-          "ticket_id": "T-1018",
-          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-        }
-      }
-    ],
-    "errors": [],
-    "final_decision": {
-      "decision": "reply",
-      "confidence": 0.7000000000000001,
-      "payload": {
-        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-      }
-    },
-    "dead_letter": false,
-    "audit_trail": [
-      {
-        "timestamp": "2026-04-18T14:07:59.300686Z",
-        "event_type": "ticket_received",
-        "content": {
-          "ticket_id": "T-1018"
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.300704Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Fetching order details for grounding."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.439824Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_order",
-          "input": {
-            "order_id": "ORD-018"
-          },
-          "output": {
-            "found": true,
-            "order_id": "ORD-018",
-            "status": "delivered",
-            "total_amount": 58.38,
-            "days_since_delivery": 25,
-            "already_refunded": false
-          },
-          "latency": 0.13910961151123047
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.439843Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Loading customer profile for risk/context."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.559445Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_customer",
-          "input": {
-            "email": "rita@example.com"
-          },
-          "output": {
-            "found": true,
-            "email": "rita@example.com",
-            "name": "Rita",
-            "segment": "regular",
-            "lifetime_value": 2684.55
-          },
-          "latency": 0.11959242820739746
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.559466Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Checking refund eligibility before further processing."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.692869Z",
-        "event_type": "action",
-        "content": {
-          "name": "check_refund_eligibility",
-          "input": {
-            "order_id": "ORD-018",
-            "category": "delivery_issue"
-          },
-          "output": {
-            "eligible": false,
-            "reason": "outside_policy_or_refunded"
-          },
-          "latency": 0.13339567184448242
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.692897Z",
-        "event_type": "decision",
-        "content": {
-          "decision": "reply",
-          "confidence": 0.7000000000000001,
-          "payload": {
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-          }
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.817985Z",
-        "event_type": "action",
-        "content": {
-          "name": "send_reply",
-          "output": {
-            "ok": true,
-            "ticket_id": "T-1018",
-            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
           }
         }
       }
@@ -3223,7 +3210,7 @@
           "days_since_delivery": 999,
           "already_refunded": false
         },
-        "latency": 0.1811962127685547
+        "latency": 0.1206662654876709
       },
       {
         "action": "get_customer",
@@ -3237,7 +3224,7 @@
           "segment": "regular",
           "lifetime_value": 3657.68
         },
-        "latency": 0.23324322700500488
+        "latency": 0.15624451637268066
       },
       {
         "action": "check_refund_eligibility",
@@ -3249,7 +3236,7 @@
           "eligible": false,
           "reason": "order_not_delivered"
         },
-        "latency": 0.06962203979492188
+        "latency": 0.18661212921142578
       },
       {
         "action": "send_reply",
@@ -3271,21 +3258,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:59.405710Z",
+        "timestamp": "2026-04-19T15:11:15.006961Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1019"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.405731Z",
+        "timestamp": "2026-04-19T15:11:15.006961Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.586949Z",
+        "timestamp": "2026-04-19T15:11:15.127627Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -3300,18 +3287,18 @@
             "days_since_delivery": 999,
             "already_refunded": false
           },
-          "latency": 0.1811962127685547
+          "latency": 0.1206662654876709
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.586977Z",
+        "timestamp": "2026-04-19T15:11:15.127627Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.820230Z",
+        "timestamp": "2026-04-19T15:11:15.283872Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -3325,18 +3312,18 @@
             "segment": "regular",
             "lifetime_value": 3657.68
           },
-          "latency": 0.23324322700500488
+          "latency": 0.15624451637268066
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.820246Z",
+        "timestamp": "2026-04-19T15:11:15.283872Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.889879Z",
+        "timestamp": "2026-04-19T15:11:15.470483Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -3348,11 +3335,11 @@
             "eligible": false,
             "reason": "order_not_delivered"
           },
-          "latency": 0.06962203979492188
+          "latency": 0.18661212921142578
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.889905Z",
+        "timestamp": "2026-04-19T15:11:15.470483Z",
         "event_type": "decision",
         "content": {
           "decision": "reply",
@@ -3363,7 +3350,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.113512Z",
+        "timestamp": "2026-04-19T15:11:15.669559Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -3371,223 +3358,6 @@
             "ok": true,
             "ticket_id": "T-1019",
             "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
-          }
-        }
-      }
-    ]
-  },
-  {
-    "ticket_id": "T-1014",
-    "step_count": 4,
-    "observations": {
-      "order": {
-        "found": true,
-        "order_id": "ORD-014",
-        "status": "lost",
-        "total_amount": 58.2,
-        "days_since_delivery": 999,
-        "already_refunded": false
-      },
-      "customer": {
-        "found": true,
-        "email": "nina@example.com",
-        "name": "Nina",
-        "segment": "regular",
-        "lifetime_value": 958.86
-      },
-      "refund_eligibility": {
-        "eligible": false,
-        "reason": "order_not_delivered"
-      }
-    },
-    "thoughts": [
-      "Fetching order details for grounding.",
-      "Loading customer profile for risk/context.",
-      "Checking refund eligibility before further processing.",
-      "Checking refund eligibility before further processing."
-    ],
-    "tool_history": [
-      {
-        "action": "get_order",
-        "input": {
-          "order_id": "ORD-014"
-        },
-        "output": {
-          "found": true,
-          "order_id": "ORD-014",
-          "status": "lost",
-          "total_amount": 58.2,
-          "days_since_delivery": 999,
-          "already_refunded": false
-        },
-        "latency": 0.4625062942504883
-      },
-      {
-        "action": "get_customer",
-        "input": {
-          "email": "nina@example.com"
-        },
-        "output": {
-          "found": true,
-          "email": "nina@example.com",
-          "name": "Nina",
-          "segment": "regular",
-          "lifetime_value": 958.86
-        },
-        "latency": 0.3789799213409424
-      },
-      {
-        "action": "check_refund_eligibility",
-        "input": {
-          "order_id": "ORD-014",
-          "category": "legal"
-        },
-        "output": {
-          "eligible": false,
-          "reason": "order_not_delivered"
-        },
-        "latency": 0.11144351959228516
-      },
-      {
-        "action": "escalate",
-        "output": {
-          "ok": true,
-          "ticket_id": "T-1014",
-          "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
-          "priority": "high"
-        }
-      }
-    ],
-    "errors": [
-      "tool_failure:check_refund_eligibility:check_refund_eligibility: transient failure"
-    ],
-    "final_decision": {
-      "decision": "escalate",
-      "confidence": 0.8,
-      "payload": {
-        "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
-        "priority": "high"
-      }
-    },
-    "dead_letter": false,
-    "audit_trail": [
-      {
-        "timestamp": "2026-04-18T14:07:58.823964Z",
-        "event_type": "ticket_received",
-        "content": {
-          "ticket_id": "T-1014"
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:58.824001Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Fetching order details for grounding."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.286522Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_order",
-          "input": {
-            "order_id": "ORD-014"
-          },
-          "output": {
-            "found": true,
-            "order_id": "ORD-014",
-            "status": "lost",
-            "total_amount": 58.2,
-            "days_since_delivery": 999,
-            "already_refunded": false
-          },
-          "latency": 0.4625062942504883
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.286545Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Loading customer profile for risk/context."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.665535Z",
-        "event_type": "action",
-        "content": {
-          "name": "get_customer",
-          "input": {
-            "email": "nina@example.com"
-          },
-          "output": {
-            "found": true,
-            "email": "nina@example.com",
-            "name": "Nina",
-            "segment": "regular",
-            "lifetime_value": 958.86
-          },
-          "latency": 0.3789799213409424
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:07:59.665563Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Checking refund eligibility before further processing."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:08:00.182273Z",
-        "event_type": "error",
-        "content": {
-          "message": "tool_failure:check_refund_eligibility:check_refund_eligibility: transient failure"
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:08:00.182296Z",
-        "event_type": "thought",
-        "content": {
-          "thought": "Checking refund eligibility before further processing."
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:08:00.293747Z",
-        "event_type": "action",
-        "content": {
-          "name": "check_refund_eligibility",
-          "input": {
-            "order_id": "ORD-014",
-            "category": "legal"
-          },
-          "output": {
-            "eligible": false,
-            "reason": "order_not_delivered"
-          },
-          "latency": 0.11144351959228516
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:08:00.293775Z",
-        "event_type": "decision",
-        "content": {
-          "decision": "escalate",
-          "confidence": 0.8,
-          "payload": {
-            "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
-            "priority": "high"
-          }
-        }
-      },
-      {
-        "timestamp": "2026-04-18T14:08:00.495419Z",
-        "event_type": "action",
-        "content": {
-          "name": "escalate",
-          "output": {
-            "ok": true,
-            "ticket_id": "T-1014",
-            "summary": "Escalate T-1014 due to risk/uncertainty; include full audit trail.",
-            "priority": "high"
           }
         }
       }
@@ -3658,7 +3428,7 @@
           "days_since_delivery": 11,
           "already_refunded": false
         },
-        "latency": 0.07520699501037598
+        "latency": 0.28237032890319824
       },
       {
         "action": "get_customer",
@@ -3672,7 +3442,7 @@
           "segment": "regular",
           "lifetime_value": 1054.35
         },
-        "latency": 0.07760429382324219
+        "latency": 0.5080347061157227
       },
       {
         "action": "check_refund_eligibility",
@@ -3684,7 +3454,7 @@
           "eligible": true,
           "reason": "within_policy"
         },
-        "latency": 0.14302325248718262
+        "latency": 0.12005758285522461
       },
       {
         "action": "get_product",
@@ -3698,7 +3468,7 @@
           "category": "apparel",
           "warranty_months": 24
         },
-        "latency": 0.5242266654968262
+        "latency": 0.5182585716247559
       },
       {
         "action": "search_knowledge_base",
@@ -3718,7 +3488,7 @@
             }
           ]
         },
-        "latency": 0.23903250694274902
+        "latency": 0.11099720001220703
       },
       {
         "action": "send_reply",
@@ -3742,21 +3512,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:59.232168Z",
+        "timestamp": "2026-04-19T15:11:14.618473Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1017"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.232186Z",
+        "timestamp": "2026-04-19T15:11:14.618473Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.307402Z",
+        "timestamp": "2026-04-19T15:11:14.900843Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -3771,18 +3541,18 @@
             "days_since_delivery": 11,
             "already_refunded": false
           },
-          "latency": 0.07520699501037598
+          "latency": 0.28237032890319824
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.307420Z",
+        "timestamp": "2026-04-19T15:11:14.900843Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.385032Z",
+        "timestamp": "2026-04-19T15:11:15.408878Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -3796,18 +3566,18 @@
             "segment": "regular",
             "lifetime_value": 1054.35
           },
-          "latency": 0.07760429382324219
+          "latency": 0.5080347061157227
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.385052Z",
+        "timestamp": "2026-04-19T15:11:15.408878Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.528084Z",
+        "timestamp": "2026-04-19T15:11:15.528936Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -3819,18 +3589,18 @@
             "eligible": true,
             "reason": "within_policy"
           },
-          "latency": 0.14302325248718262
+          "latency": 0.12005758285522461
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.528111Z",
+        "timestamp": "2026-04-19T15:11:15.528936Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching product metadata."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.052347Z",
+        "timestamp": "2026-04-19T15:11:16.047194Z",
         "event_type": "action",
         "content": {
           "name": "get_product",
@@ -3844,18 +3614,18 @@
             "category": "apparel",
             "warranty_months": 24
           },
-          "latency": 0.5242266654968262
+          "latency": 0.5182585716247559
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.052373Z",
+        "timestamp": "2026-04-19T15:11:16.047194Z",
         "event_type": "thought",
         "content": {
           "thought": "Searching knowledge base for policy guidance."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.291414Z",
+        "timestamp": "2026-04-19T15:11:16.158191Z",
         "event_type": "action",
         "content": {
           "name": "search_knowledge_base",
@@ -3875,11 +3645,11 @@
               }
             ]
           },
-          "latency": 0.23903250694274902
+          "latency": 0.11099720001220703
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.291446Z",
+        "timestamp": "2026-04-19T15:11:16.158191Z",
         "event_type": "decision",
         "content": {
           "decision": "refund",
@@ -3892,7 +3662,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.895415Z",
+        "timestamp": "2026-04-19T15:11:16.642542Z",
         "event_type": "action",
         "content": {
           "name": "send_reply",
@@ -3900,6 +3670,219 @@
             "ok": true,
             "ticket_id": "T-1017",
             "message": "Refund of $144.95 has been issued."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "ticket_id": "T-1018",
+    "step_count": 4,
+    "observations": {
+      "order": {
+        "found": true,
+        "order_id": "ORD-018",
+        "status": "delivered",
+        "total_amount": 58.38,
+        "days_since_delivery": 25,
+        "already_refunded": false
+      },
+      "customer": {
+        "found": true,
+        "email": "rita@example.com",
+        "name": "Rita",
+        "segment": "regular",
+        "lifetime_value": 2684.55
+      },
+      "refund_eligibility": {
+        "eligible": false,
+        "reason": "outside_policy_or_refunded"
+      }
+    },
+    "thoughts": [
+      "Fetching order details for grounding.",
+      "Loading customer profile for risk/context.",
+      "Checking refund eligibility before further processing.",
+      "Checking refund eligibility before further processing."
+    ],
+    "tool_history": [
+      {
+        "action": "get_order",
+        "input": {
+          "order_id": "ORD-018"
+        },
+        "output": {
+          "found": true,
+          "order_id": "ORD-018",
+          "status": "delivered",
+          "total_amount": 58.38,
+          "days_since_delivery": 25,
+          "already_refunded": false
+        },
+        "latency": 0.47678041458129883
+      },
+      {
+        "action": "get_customer",
+        "input": {
+          "email": "rita@example.com"
+        },
+        "output": {
+          "found": true,
+          "email": "rita@example.com",
+          "name": "Rita",
+          "segment": "regular",
+          "lifetime_value": 2684.55
+        },
+        "latency": 0.5732100009918213
+      },
+      {
+        "action": "check_refund_eligibility",
+        "input": {
+          "order_id": "ORD-018",
+          "category": "delivery_issue"
+        },
+        "output": {
+          "eligible": false,
+          "reason": "outside_policy_or_refunded"
+        },
+        "latency": 0.31247591972351074
+      },
+      {
+        "action": "send_reply",
+        "output": {
+          "ok": true,
+          "ticket_id": "T-1018",
+          "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+        }
+      }
+    ],
+    "errors": [
+      "tool_failure:check_refund_eligibility:check_refund_eligibility: transient failure"
+    ],
+    "final_decision": {
+      "decision": "reply",
+      "confidence": 0.7000000000000001,
+      "payload": {
+        "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+      }
+    },
+    "dead_letter": false,
+    "audit_trail": [
+      {
+        "timestamp": "2026-04-19T15:11:14.900843Z",
+        "event_type": "ticket_received",
+        "content": {
+          "ticket_id": "T-1018"
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:14.900843Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Fetching order details for grounding."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:15.377624Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_order",
+          "input": {
+            "order_id": "ORD-018"
+          },
+          "output": {
+            "found": true,
+            "order_id": "ORD-018",
+            "status": "delivered",
+            "total_amount": 58.38,
+            "days_since_delivery": 25,
+            "already_refunded": false
+          },
+          "latency": 0.47678041458129883
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:15.377624Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Loading customer profile for risk/context."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:15.950834Z",
+        "event_type": "action",
+        "content": {
+          "name": "get_customer",
+          "input": {
+            "email": "rita@example.com"
+          },
+          "output": {
+            "found": true,
+            "email": "rita@example.com",
+            "name": "Rita",
+            "segment": "regular",
+            "lifetime_value": 2684.55
+          },
+          "latency": 0.5732100009918213
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:15.950834Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Checking refund eligibility before further processing."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:16.408191Z",
+        "event_type": "error",
+        "content": {
+          "message": "tool_failure:check_refund_eligibility:check_refund_eligibility: transient failure"
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:16.408191Z",
+        "event_type": "thought",
+        "content": {
+          "thought": "Checking refund eligibility before further processing."
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:16.720667Z",
+        "event_type": "action",
+        "content": {
+          "name": "check_refund_eligibility",
+          "input": {
+            "order_id": "ORD-018",
+            "category": "delivery_issue"
+          },
+          "output": {
+            "eligible": false,
+            "reason": "outside_policy_or_refunded"
+          },
+          "latency": 0.31247591972351074
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:16.720667Z",
+        "event_type": "decision",
+        "content": {
+          "decision": "reply",
+          "confidence": 0.7000000000000001,
+          "payload": {
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
+          }
+        }
+      },
+      {
+        "timestamp": "2026-04-19T15:11:16.798792Z",
+        "event_type": "action",
+        "content": {
+          "name": "send_reply",
+          "output": {
+            "ok": true,
+            "ticket_id": "T-1018",
+            "message": "Thanks for reaching out. We reviewed your case and shared the next best resolution."
           }
         }
       }
@@ -3966,7 +3949,7 @@
           "days_since_delivery": 2,
           "already_refunded": false
         },
-        "latency": 0.20180845260620117
+        "latency": 0.07814860343933105
       },
       {
         "action": "get_customer",
@@ -3980,7 +3963,7 @@
           "segment": "regular",
           "lifetime_value": 108.72
         },
-        "latency": 0.529961109161377
+        "latency": 0.1562495231628418
       },
       {
         "action": "check_refund_eligibility",
@@ -3992,7 +3975,7 @@
           "eligible": true,
           "reason": "within_policy"
         },
-        "latency": 0.13345980644226074
+        "latency": 0.20735788345336914
       },
       {
         "action": "get_product",
@@ -4006,7 +3989,7 @@
           "category": "accessories",
           "warranty_months": 24
         },
-        "latency": 0.11223101615905762
+        "latency": 0.171875
       },
       {
         "action": "search_knowledge_base",
@@ -4022,7 +4005,7 @@
             }
           ]
         },
-        "latency": 0.2048802375793457
+        "latency": 0.43747639656066895
       },
       {
         "action": "escalate",
@@ -4046,21 +4029,21 @@
     "dead_letter": false,
     "audit_trail": [
       {
-        "timestamp": "2026-04-18T14:07:59.616085Z",
+        "timestamp": "2026-04-19T15:11:15.669559Z",
         "event_type": "ticket_received",
         "content": {
           "ticket_id": "T-1020"
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.616108Z",
+        "timestamp": "2026-04-19T15:11:15.669559Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching order details for grounding."
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.817931Z",
+        "timestamp": "2026-04-19T15:11:15.747708Z",
         "event_type": "action",
         "content": {
           "name": "get_order",
@@ -4075,18 +4058,18 @@
             "days_since_delivery": 2,
             "already_refunded": false
           },
-          "latency": 0.20180845260620117
+          "latency": 0.07814860343933105
         }
       },
       {
-        "timestamp": "2026-04-18T14:07:59.817951Z",
+        "timestamp": "2026-04-19T15:11:15.747708Z",
         "event_type": "thought",
         "content": {
           "thought": "Loading customer profile for risk/context."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.347921Z",
+        "timestamp": "2026-04-19T15:11:15.903957Z",
         "event_type": "action",
         "content": {
           "name": "get_customer",
@@ -4100,18 +4083,18 @@
             "segment": "regular",
             "lifetime_value": 108.72
           },
-          "latency": 0.529961109161377
+          "latency": 0.1562495231628418
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.347944Z",
+        "timestamp": "2026-04-19T15:11:15.903957Z",
         "event_type": "thought",
         "content": {
           "thought": "Checking refund eligibility before further processing."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.481427Z",
+        "timestamp": "2026-04-19T15:11:16.111315Z",
         "event_type": "action",
         "content": {
           "name": "check_refund_eligibility",
@@ -4123,18 +4106,18 @@
             "eligible": true,
             "reason": "within_policy"
           },
-          "latency": 0.13345980644226074
+          "latency": 0.20735788345336914
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.481461Z",
+        "timestamp": "2026-04-19T15:11:16.111315Z",
         "event_type": "thought",
         "content": {
           "thought": "Fetching product metadata."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.593706Z",
+        "timestamp": "2026-04-19T15:11:16.283190Z",
         "event_type": "action",
         "content": {
           "name": "get_product",
@@ -4148,18 +4131,18 @@
             "category": "accessories",
             "warranty_months": 24
           },
-          "latency": 0.11223101615905762
+          "latency": 0.171875
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.593750Z",
+        "timestamp": "2026-04-19T15:11:16.283190Z",
         "event_type": "thought",
         "content": {
           "thought": "Searching knowledge base for policy guidance."
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.798644Z",
+        "timestamp": "2026-04-19T15:11:16.720667Z",
         "event_type": "action",
         "content": {
           "name": "search_knowledge_base",
@@ -4175,11 +4158,11 @@
               }
             ]
           },
-          "latency": 0.2048802375793457
+          "latency": 0.43747639656066895
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:00.798673Z",
+        "timestamp": "2026-04-19T15:11:16.720667Z",
         "event_type": "decision",
         "content": {
           "decision": "escalate",
@@ -4191,7 +4174,7 @@
         }
       },
       {
-        "timestamp": "2026-04-18T14:08:01.031127Z",
+        "timestamp": "2026-04-19T15:11:16.892541Z",
         "event_type": "action",
         "content": {
           "name": "escalate",

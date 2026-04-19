@@ -73,8 +73,7 @@ pip install -r requirements.txt
 ## Run the Project
 
 ```bash
-python main.py
-```
+python -m app.main
 
 ---
 

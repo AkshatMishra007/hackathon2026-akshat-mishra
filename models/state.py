@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
 from typing import Any, Dict, List, Optional
-
+from datetime import datetime, timezone
 from models.ticket import Ticket
 
 
@@ -28,7 +27,7 @@ class AgentState:
     def log_event(self, event_type: str, content: Dict[str, Any]) -> None:
         self.audit_trail.append(
             AuditEvent(
-                timestamp=datetime.now(UTC).isoformat().replace("+00:00", "Z"),
+                timestamp=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
                 event_type=event_type,
                 content=content,
             )
