@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Agent Control Panel</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #1f2937;
+      background: #eff2f7;
+      --card-bg: #ffffff;
+      --card-border: rgba(148, 163, 184, 0.24);
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --secondary: #475569;
+      --surface: #f8fafc;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.12), transparent 30%),
+                  linear-gradient(180deg, #f8fbff 0%, #eff2f7 100%);
+    }
+
+    body, input, button {
+      font: 16px / 1.6 "Inter", sans-serif;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+    }
+
+    .header {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.16);
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: clamp(1.75rem, 2vw, 2.2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+      color: #475569;
+      max-width: 800px;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .card {
+      grid-column: span 12;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .card.small {
+      padding: 22px;
+    }
+
+    .card h2,
+    .card h3 {
+      margin: 0 0 14px;
+      color: #111827;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+    }
+
+    .panel {
+      display: grid;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input[type="number"] {
+      width: 96px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 14px;
+      border: none;
+      color: #ffffff;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.15);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.98;
+    }
+
+    .status-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .status-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: #f8fbff;
+      border: 1px solid rgba(59, 130, 246, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+    }
+
+    .status-card span {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .status-card small {
+      display: block;
+      margin-top: 6px;
+      color: #64748b;
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: 16px 14px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .history-table th {
+      font-size: 0.92rem;
+      color: #475569;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .history-table tbody tr:hover {
+      background: #f1f5f9;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .badge.success { background: #dcfce7; color: #166534; }
+    .badge.info { background: #e0f2fe; color: #0369a1; }
+    .badge.warning { background: #fef3c7; color: #92400e; }
+    .badge.danger { background: #fee2e2; color: #991b1b; }
+
+    .empty-state {
+      padding: 22px;
+      margin-top: 12px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      color: #64748b;
+    }
+
+    .result-panel {
+      display: grid;
+      gap: 16px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 22px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .result-metric {
+      display: grid;
+      gap: 6px;
+    }
+
+    .result-metric strong {
+      font-size: 1.55rem;
+      color: #0f172a;
+    }
+
+    .result-metric span {
+      color: #64748b;
+    }
+
+    @media (max-width: 900px) {
+      .status-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 22px 16px 36px; }
+      .status-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="header">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div>
+          <h1 class="brand-title">Support Agent Control Panel</h1>
+          <p class="brand-subtitle">Monitor live agent runs, review processing history, and manage worker throughput from one polished interface.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card" style="grid-column: span 7;">
+        <div class="panel">
+          <div class="result-header">
+            <div>
+              <h2>Run Agent</h2>
+              <p style="margin:0;color:#64748b;">Start a new support processing batch and track the latest summary instantly.</p>
+            </div>
+            <button type="button" onclick="runAgent()">Run Processing</button>
+          </div>
+
+          <div class="form-row">
+            <label for="workers">Workers</label>
+            <input id="workers" type="number" min="1" max="5" value="3" />
+          </div>
+
+          <div id="runResult" class="result-panel">
+            <div class="result-metric">
+              <strong id="runId">—</strong>
+              <span>Last run ID</span>
+            </div>
+            <div class="result-metric">
+              <strong id="ticketsProcessed">—</strong>
+              <span>Tickets processed</span>
+            </div>
+            <div class="status-grid" style="margin-top: 6px;">
+              <div class="status-card"><span id="runRefund">0</span><small>Refunds</small></div>
+              <div class="status-card"><span id="runReply">0</span><small>Replies</small></div>
+              <div class="status-card"><span id="runEscalate">0</span><small>Escalations</small></div>
+              <div class="status-card"><span id="runDeadLetter">0</span><small>Dead letters</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="grid-column: span 5;">
+        <div class="panel">
+          <div class="history-header">
+            <div>
+              <h2>Quick Summary</h2>
+              <p style="margin:0;color:#64748b;">Use the panel to view the most recent activity and data refresh status.</p>
+            </div>
+            <button type="button" onclick="loadRuns()">Refresh History</button>
+          </div>
+
+          <div class="status-grid" style="margin-top: 0;">
+            <div class="status-card"><span id="totalRuns">0</span><small>Total runs</small></div>
+            <div class="status-card"><span id="latestWorkers">—</span><small>Latest workers</small></div>
+            <div class="status-card"><span id="latestTickets">—</span><small>Latest tickets</small></div>
+            <div class="status-card"><span id="latestTime">—</span><small>Last updated</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="grid-column: span 12;">
+        <div class="panel">
+          <div class="history-header">
+            <div>
+              <h2>Run History</h2>
+              <p style="margin:0;color:#64748b;">Review the most recent support execution batches and performance metrics.</p>
+            </div>
+          </div>
+
+          <div id="historyContent">
+            <div class="empty-state">Loading run history…</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const runIdEl = document.getElementById("runId");
+    const ticketsProcessedEl = document.getElementById("ticketsProcessed");
+    const runRefundEl = document.getElementById("runRefund");
+    const runReplyEl = document.getElementById("runReply");
+    const runEscalateEl = document.getElementById("runEscalate");
+    const runDeadLetterEl = document.getElementById("runDeadLetter");
+    const totalRunsEl = document.getElementById("totalRuns");
+    const latestWorkersEl = document.getElementById("latestWorkers");
+    const latestTicketsEl = document.getElementById("latestTickets");
+    const latestTimeEl = document.getElementById("latestTime");
+    const historyContent = document.getElementById("historyContent");
+
+    async function runAgent() {
+      const workers = Number(document.getElementById("workers").value);
+      const response = await fetch("/api/run", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({max_workers: workers}),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        alert(`Error starting run: ${error}`);
+        return;
+      }
+
+      const data = await response.json();
+      updateLatestResult(data);
+      await loadRuns();
+    }
+
+    function updateLatestResult(data) {
+      runIdEl.textContent = data.run_id ?? "—";
+      ticketsProcessedEl.textContent = data.tickets_processed ?? "—";
+      runRefundEl.textContent = (data.summary?.refund ?? 0).toString();
+      runReplyEl.textContent = (data.summary?.reply ?? 0).toString();
+      runEscalateEl.textContent = (data.summary?.escalate ?? 0).toString();
+      runDeadLetterEl.textContent = (data.summary?.dead_letter ?? 0).toString();
+    }
+
+    function buildHistoryTable(runs) {
+      if (!runs || runs.length === 0) {
+        historyContent.innerHTML = '<div class="empty-state">No run history is available yet. Start a batch to create history entries.</div>';
+        totalRunsEl.textContent = "0";
+        latestWorkersEl.textContent = "—";
+        latestTicketsEl.textContent = "—";
+        latestTimeEl.textContent = "—";
+        return;
+      }
+
+      const rows = runs.map(run => {
+        const summary = run.summary || {};
+        return `
+          <tr>
+            <td>${run.id}</td>
+            <td>${new Date(run.created_at).toLocaleString()}</td>
+            <td>${run.tickets_processed}</td>
+            <td>${run.workers_used}</td>
+            <td>${summary.refund ?? 0}</td>
+            <td>${summary.reply ?? 0}</td>
+            <td>${summary.escalate ?? 0}</td>
+            <td>${summary.dead_letter ?? 0}</td>
+          </tr>
+        `;
+      }).join("\n");
+
+      historyContent.innerHTML = `
+        <div style="overflow-x:auto;">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Run ID</th>
+                <th>Timestamp</th>
+                <th>Tickets</th>
+                <th>Workers</th>
+                <th>Refund</th>
+                <th>Reply</th>
+                <th>Escalate</th>
+                <th>Dead Letter</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
+
+      totalRunsEl.textContent = runs.length.toString();
+      latestWorkersEl.textContent = runs[0]?.workers_used?.toString() ?? "—";
+      latestTicketsEl.textContent = runs[0]?.tickets_processed?.toString() ?? "—";
+      latestTimeEl.textContent = new Date(runs[0]?.created_at).toLocaleString() || "—";
+    }
+
+    async function loadRuns() {
+      const response = await fetch("/api/runs");
+      if (!response.ok) {
+        historyContent.innerHTML = `<div class="empty-state">Unable to load run history. Please try again.</div>`;
+        return;
+      }
+      const data = await response.json();
+      buildHistoryTable(data.runs || []);
+    }
+
+    window.addEventListener("DOMContentLoaded", loadRuns);
+  </script>
+</body>
+</html>

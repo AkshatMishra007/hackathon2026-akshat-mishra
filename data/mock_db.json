@@ -1,0 +1,445 @@
+{
+  "customers": {
+    "alice@example.com": {
+      "email": "alice@example.com",
+      "name": "Alice",
+      "segment": "vip",
+      "lifetime_value": 2906.27
+    },
+    "bob@example.com": {
+      "email": "bob@example.com",
+      "name": "Bob",
+      "segment": "regular",
+      "lifetime_value": 190.55
+    },
+    "carol@example.com": {
+      "email": "carol@example.com",
+      "name": "Carol",
+      "segment": "regular",
+      "lifetime_value": 1295.63
+    },
+    "dave@example.com": {
+      "email": "dave@example.com",
+      "name": "Dave",
+      "segment": "regular",
+      "lifetime_value": 1066.59
+    },
+    "eve@example.com": {
+      "email": "eve@example.com",
+      "name": "Eve",
+      "segment": "regular",
+      "lifetime_value": 3335.2
+    },
+    "frank@example.com": {
+      "email": "frank@example.com",
+      "name": "Frank",
+      "segment": "vip",
+      "lifetime_value": 3071.01
+    },
+    "gina@example.com": {
+      "email": "gina@example.com",
+      "name": "Gina",
+      "segment": "regular",
+      "lifetime_value": 4023.43
+    },
+    "harry@example.com": {
+      "email": "harry@example.com",
+      "name": "Harry",
+      "segment": "regular",
+      "lifetime_value": 464.27
+    },
+    "irene@example.com": {
+      "email": "irene@example.com",
+      "name": "Irene",
+      "segment": "regular",
+      "lifetime_value": 1944.89
+    },
+    "john@example.com": {
+      "email": "john@example.com",
+      "name": "John",
+      "segment": "regular",
+      "lifetime_value": 211.7
+    },
+    "kate@example.com": {
+      "email": "kate@example.com",
+      "name": "Kate",
+      "segment": "vip",
+      "lifetime_value": 1046.38
+    },
+    "liam@example.com": {
+      "email": "liam@example.com",
+      "name": "Liam",
+      "segment": "regular",
+      "lifetime_value": 2313.67
+    },
+    "maya@example.com": {
+      "email": "maya@example.com",
+      "name": "Maya",
+      "segment": "regular",
+      "lifetime_value": 197.29
+    },
+    "nina@example.com": {
+      "email": "nina@example.com",
+      "name": "Nina",
+      "segment": "regular",
+      "lifetime_value": 958.86
+    },
+    "owen@example.com": {
+      "email": "owen@example.com",
+      "name": "Owen",
+      "segment": "regular",
+      "lifetime_value": 2952.49
+    },
+    "paul@example.com": {
+      "email": "paul@example.com",
+      "name": "Paul",
+      "segment": "vip",
+      "lifetime_value": 2488.64
+    },
+    "quinn@example.com": {
+      "email": "quinn@example.com",
+      "name": "Quinn",
+      "segment": "regular",
+      "lifetime_value": 1054.35
+    },
+    "rita@example.com": {
+      "email": "rita@example.com",
+      "name": "Rita",
+      "segment": "regular",
+      "lifetime_value": 2684.55
+    },
+    "sam@example.com": {
+      "email": "sam@example.com",
+      "name": "Sam",
+      "segment": "regular",
+      "lifetime_value": 3657.68
+    },
+    "tina@example.com": {
+      "email": "tina@example.com",
+      "name": "Tina",
+      "segment": "regular",
+      "lifetime_value": 108.72
+    }
+  },
+  "orders": {
+    "ORD-001": {
+      "order_id": "ORD-001",
+      "status": "delivered",
+      "total_amount": 187.25,
+      "days_since_delivery": 22,
+      "already_refunded": false
+    },
+    "ORD-002": {
+      "order_id": "ORD-002",
+      "status": "in_transit",
+      "total_amount": 56.47,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-003": {
+      "order_id": "ORD-003",
+      "status": "in_transit",
+      "total_amount": 43.63,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-004": {
+      "order_id": "ORD-004",
+      "status": "lost",
+      "total_amount": 42.31,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-005": {
+      "order_id": "ORD-005",
+      "status": "in_transit",
+      "total_amount": 164.5,
+      "days_since_delivery": 40,
+      "already_refunded": false
+    },
+    "ORD-006": {
+      "order_id": "ORD-006",
+      "status": "delivered",
+      "total_amount": 194.87,
+      "days_since_delivery": 35,
+      "already_refunded": false
+    },
+    "ORD-007": {
+      "order_id": "ORD-007",
+      "status": "delivered",
+      "total_amount": 253.52,
+      "days_since_delivery": 25,
+      "already_refunded": false
+    },
+    "ORD-008": {
+      "order_id": "ORD-008",
+      "status": "delivered",
+      "total_amount": 152.04,
+      "days_since_delivery": 41,
+      "already_refunded": false
+    },
+    "ORD-009": {
+      "order_id": "ORD-009",
+      "status": "in_transit",
+      "total_amount": 158.14,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-010": {
+      "order_id": "ORD-010",
+      "status": "lost",
+      "total_amount": 30.04,
+      "days_since_delivery": 15,
+      "already_refunded": false
+    },
+    "ORD-011": {
+      "order_id": "ORD-011",
+      "status": "in_transit",
+      "total_amount": 256.44,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-012": {
+      "order_id": "ORD-012",
+      "status": "delivered",
+      "total_amount": 227.82,
+      "days_since_delivery": 25,
+      "already_refunded": false
+    },
+    "ORD-013": {
+      "order_id": "ORD-013",
+      "status": "in_transit",
+      "total_amount": 128.27,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-014": {
+      "order_id": "ORD-014",
+      "status": "lost",
+      "total_amount": 58.2,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-015": {
+      "order_id": "ORD-015",
+      "status": "in_transit",
+      "total_amount": 69.49,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-016": {
+      "order_id": "ORD-016",
+      "status": "in_transit",
+      "total_amount": 188.14,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-017": {
+      "order_id": "ORD-017",
+      "status": "delivered",
+      "total_amount": 165.8,
+      "days_since_delivery": 11,
+      "already_refunded": false
+    },
+    "ORD-018": {
+      "order_id": "ORD-018",
+      "status": "delivered",
+      "total_amount": 58.38,
+      "days_since_delivery": 25,
+      "already_refunded": false
+    },
+    "ORD-019": {
+      "order_id": "ORD-019",
+      "status": "in_transit",
+      "total_amount": 257.48,
+      "days_since_delivery": 999,
+      "already_refunded": false
+    },
+    "ORD-020": {
+      "order_id": "ORD-020",
+      "status": "delivered",
+      "total_amount": 183.99,
+      "days_since_delivery": 2,
+      "already_refunded": false
+    },
+    "ORD-021": {
+      "order_id": "ORD-021",
+      "status": "delivered",
+      "total_amount": 100.0,
+      "days_since_delivery": 5,
+      "already_refunded": true
+    }
+  },
+  "products": {
+    "PRD-101": {
+      "product_id": "PRD-101",
+      "name": "Product 1",
+      "category": "apparel",
+      "warranty_months": 6
+    },
+    "PRD-102": {
+      "product_id": "PRD-102",
+      "name": "Product 2",
+      "category": "home",
+      "warranty_months": 12
+    },
+    "PRD-103": {
+      "product_id": "PRD-103",
+      "name": "Product 3",
+      "category": "home",
+      "warranty_months": 6
+    },
+    "PRD-104": {
+      "product_id": "PRD-104",
+      "name": "Product 4",
+      "category": "apparel",
+      "warranty_months": 24
+    },
+    "PRD-105": {
+      "product_id": "PRD-105",
+      "name": "Product 5",
+      "category": "home",
+      "warranty_months": 6
+    },
+    "PRD-106": {
+      "product_id": "PRD-106",
+      "name": "Product 6",
+      "category": "accessories",
+      "warranty_months": 12
+    },
+    "PRD-107": {
+      "product_id": "PRD-107",
+      "name": "Product 7",
+      "category": "accessories",
+      "warranty_months": 6
+    },
+    "PRD-108": {
+      "product_id": "PRD-108",
+      "name": "Product 8",
+      "category": "home",
+      "warranty_months": 6
+    },
+    "PRD-109": {
+      "product_id": "PRD-109",
+      "name": "Product 9",
+      "category": "apparel",
+      "warranty_months": 24
+    },
+    "PRD-110": {
+      "product_id": "PRD-110",
+      "name": "Product 10",
+      "category": "home",
+      "warranty_months": 24
+    },
+    "PRD-111": {
+      "product_id": "PRD-111",
+      "name": "Product 11",
+      "category": "accessories",
+      "warranty_months": 24
+    },
+    "PRD-112": {
+      "product_id": "PRD-112",
+      "name": "Product 12",
+      "category": "accessories",
+      "warranty_months": 12
+    },
+    "PRD-113": {
+      "product_id": "PRD-113",
+      "name": "Product 13",
+      "category": "apparel",
+      "warranty_months": 6
+    },
+    "PRD-114": {
+      "product_id": "PRD-114",
+      "name": "Product 14",
+      "category": "accessories",
+      "warranty_months": 6
+    },
+    "PRD-115": {
+      "product_id": "PRD-115",
+      "name": "Product 15",
+      "category": "electronics",
+      "warranty_months": 6
+    },
+    "PRD-116": {
+      "product_id": "PRD-116",
+      "name": "Product 16",
+      "category": "apparel",
+      "warranty_months": 24
+    },
+    "PRD-117": {
+      "product_id": "PRD-117",
+      "name": "Product 17",
+      "category": "apparel",
+      "warranty_months": 24
+    },
+    "PRD-118": {
+      "product_id": "PRD-118",
+      "name": "Product 18",
+      "category": "accessories",
+      "warranty_months": 24
+    },
+    "PRD-119": {
+      "product_id": "PRD-119",
+      "name": "Product 19",
+      "category": "electronics",
+      "warranty_months": 12
+    },
+    "PRD-120": {
+      "product_id": "PRD-120",
+      "name": "Product 20",
+      "category": "accessories",
+      "warranty_months": 24
+    },
+    "PRD-121": {
+      "product_id": "PRD-121",
+      "name": "Product 21",
+      "category": "accessories",
+      "warranty_months": 24
+    },
+    "PRD-122": {
+      "product_id": "PRD-122",
+      "name": "Product 22",
+      "category": "home",
+      "warranty_months": 24
+    },
+    "PRD-123": {
+      "product_id": "PRD-123",
+      "name": "Product 23",
+      "category": "electronics",
+      "warranty_months": 24
+    },
+    "PRD-124": {
+      "product_id": "PRD-124",
+      "name": "Product 24",
+      "category": "electronics",
+      "warranty_months": 24
+    }
+  },
+  "knowledge_base": [
+    {
+      "id": "KB-001",
+      "text": "Refunds are eligible within 30 days of delivery if not already refunded."
+    },
+    {
+      "id": "KB-002",
+      "text": "Lost or fraud-related orders should be escalated to specialist queues."
+    },
+    {
+      "id": "KB-003",
+      "text": "Product warranty details can be shared via support reply templates."
+    },
+    {
+      "id": "KB-004",
+      "text": "Chargebacks and legal complaints require high-priority escalation."
+    },
+    {
+      "id": "KB-005",
+      "text": "Damaged item claims can be resolved with replacement or refund."
+    }
+  ],
+  "refund_policy": {
+    "refund_window_days": 14,
+    "damaged_wrong_window_days": 7
+  }
+}

@@ -1,0 +1,223 @@
+[
+  {
+    "ticket_id": "T-1001",
+    "order_id": "ORD-001",
+    "customer_email": "alice@example.com",
+    "category": "refund_request",
+    "subject": "Refund Request case 1",
+    "message": "Customer reports refund request for order ORD-001.",
+    "requested_amount": 27.35,
+    "product_id": "PRD-101",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1002",
+    "order_id": "ORD-002",
+    "customer_email": "bob@example.com",
+    "category": "delivery_issue",
+    "subject": "Delivery Issue case 2",
+    "message": "Customer reports delivery issue for order ORD-002.",
+    "requested_amount": null,
+    "product_id": "PRD-102",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1003",
+    "order_id": "ORD-003",
+    "customer_email": "carol@example.com",
+    "category": "product_query",
+    "subject": "Product Query case 3",
+    "message": "Customer reports product query for order ORD-003.",
+    "requested_amount": null,
+    "product_id": "PRD-103",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1004",
+    "order_id": "ORD-004",
+    "customer_email": "dave@example.com",
+    "category": "wrong_item",
+    "subject": "Wrong Item case 4",
+    "message": "Customer reports wrong item for order ORD-004.",
+    "requested_amount": 49.4,
+    "product_id": "PRD-104",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1005",
+    "order_id": "ORD-005",
+    "customer_email": "eve@example.com",
+    "category": "damaged_item",
+    "subject": "Damaged Item case 5",
+    "message": "Customer reports damaged item for order ORD-005.",
+    "requested_amount": 56.75,
+    "product_id": "PRD-105",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1006",
+    "order_id": "ORD-006",
+    "customer_email": "frank@example.com",
+    "category": "legal",
+    "subject": "Legal case 6",
+    "message": "Customer reports legal for order ORD-006.",
+    "requested_amount": null,
+    "product_id": "PRD-106",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1007",
+    "order_id": "ORD-007",
+    "customer_email": "gina@example.com",
+    "category": "fraud_claim",
+    "subject": "Fraud Claim case 7",
+    "message": "Customer reports fraud claim for order ORD-007.",
+    "requested_amount": null,
+    "product_id": "PRD-107",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1008",
+    "order_id": "ORD-008",
+    "customer_email": "harry@example.com",
+    "category": "chargeback",
+    "subject": "Chargeback case 8",
+    "message": "Customer reports chargeback for order ORD-008.",
+    "requested_amount": null,
+    "product_id": "PRD-108",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1009",
+    "order_id": "ORD-009",
+    "customer_email": "irene@example.com",
+    "category": "refund_request",
+    "subject": "Refund Request case 9",
+    "message": "Customer reports refund request for order ORD-009.",
+    "requested_amount": 86.15,
+    "product_id": "PRD-109",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1010",
+    "order_id": "ORD-010",
+    "customer_email": "john@example.com",
+    "category": "delivery_issue",
+    "subject": "Delivery Issue case 10",
+    "message": "Customer reports delivery issue for order ORD-010.",
+    "requested_amount": null,
+    "product_id": "PRD-110",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1011",
+    "order_id": "ORD-011",
+    "customer_email": "kate@example.com",
+    "category": "product_query",
+    "subject": "Product Query case 11",
+    "message": "Customer reports product query for order ORD-011.",
+    "requested_amount": null,
+    "product_id": "PRD-111",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1012",
+    "order_id": "ORD-012",
+    "customer_email": "liam@example.com",
+    "category": "wrong_item",
+    "subject": "Wrong Item case 12",
+    "message": "Customer reports wrong item for order ORD-012.",
+    "requested_amount": 108.2,
+    "product_id": "PRD-112",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1013",
+    "order_id": "ORD-013",
+    "customer_email": "maya@example.com",
+    "category": "damaged_item",
+    "subject": "Damaged Item case 13",
+    "message": "Customer reports damaged item for order ORD-013.",
+    "requested_amount": 115.55,
+    "product_id": "PRD-113",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1014",
+    "order_id": "ORD-014",
+    "customer_email": "nina@example.com",
+    "category": "legal",
+    "subject": "Legal case 14",
+    "message": "Customer reports legal for order ORD-014.",
+    "requested_amount": null,
+    "product_id": "PRD-114",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1015",
+    "order_id": "ORD-015",
+    "customer_email": "owen@example.com",
+    "category": "fraud_claim",
+    "subject": "Fraud Claim case 15",
+    "message": "Customer reports fraud claim for order ORD-015.",
+    "requested_amount": null,
+    "product_id": "PRD-115",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1016",
+    "order_id": "ORD-016",
+    "customer_email": "paul@example.com",
+    "category": "chargeback",
+    "subject": "Chargeback case 16",
+    "message": "Customer reports chargeback for order ORD-016.",
+    "requested_amount": null,
+    "product_id": "PRD-116",
+    "priority_hint": "high"
+  },
+  {
+    "ticket_id": "T-1017",
+    "order_id": "ORD-017",
+    "customer_email": "quinn@example.com",
+    "category": "refund_request",
+    "subject": "Refund Request case 17",
+    "message": "Customer reports refund request for order ORD-017.",
+    "requested_amount": 144.95,
+    "product_id": "PRD-117",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1018",
+    "order_id": "ORD-018",
+    "customer_email": "rita@example.com",
+    "category": "delivery_issue",
+    "subject": "Delivery Issue case 18",
+    "message": "Customer reports delivery issue for order ORD-018.",
+    "requested_amount": null,
+    "product_id": "PRD-118",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1019",
+    "order_id": "ORD-019",
+    "customer_email": "sam@example.com",
+    "category": "product_query",
+    "subject": "Product Query case 19",
+    "message": "Customer reports product query for order ORD-019.",
+    "requested_amount": null,
+    "product_id": "PRD-119",
+    "priority_hint": "normal"
+  },
+  {
+    "ticket_id": "T-1020",
+    "order_id": "ORD-020",
+    "customer_email": "tina@example.com",
+    "category": "wrong_item",
+    "subject": "Wrong Item case 20",
+    "message": "Customer reports wrong item for order ORD-020.",
+    "requested_amount": 167.0,
+    "product_id": "PRD-120",
+    "priority_hint": "high"
+  }
+
+]
