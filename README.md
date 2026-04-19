@@ -105,6 +105,7 @@ Improves performance and realism
 ## Environment Variables (Optional)
 
 If using API-based reasoning:
+
 OPENAI_API_KEY=your_key
 
 GEMINI_API_KEY=your_key
@@ -116,9 +117,13 @@ This project helped me understand how real systems are not just about solving a 
 ## Hackathon Requirements Covered
 
 ≥ 3 tool calls per ticket
+
 Autonomous decision making
+
 Full audit logging
+
 Failure handling
+
 Concurrent processing
 
 
