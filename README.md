@@ -1,144 +1,150 @@
-<!-- Autonomous Support Resolution Agent (Hackathon 2026) -->
+# Autonomous Support Resolution Agent
 
-A production-style AI agent designed to autonomously process customer support tickets using a structured Thought → Action → Observation → Decision loop.
+## Overview
 
-The system simulates real-world support workflows by combining reasoning, tool execution, validation, and safe decision-making with full auditability.
+An agentic system that autonomously processes customer support tickets using a multi-step reasoning loop, tool execution, and decision engine.
 
-<!-- Overview -->
+---
 
-This project implements an intelligent support agent capable of handling customer tickets end-to-end. Instead of relying on static rules, the agent dynamically gathers information, reasons about the context, and executes appropriate actions such as issuing refunds, replying to customers, or escalating cases.
+## Features
 
-The architecture is designed to reflect production-grade systems with emphasis on reliability, traceability, and safe handling of irreversible operations.
+* Multi-step reasoning (Thought → Action → Observation loop)
+* Tool chaining (≥ 3 tools per ticket)
+* Retry + timeout handling
+* Concurrent ticket processing using asyncio
+* Full audit logging
+* Safe execution with escalation fallback
 
-<!-- Key Capabilities -->
-Processes multiple tickets concurrently using an asynchronous execution model
-Performs multi-step reasoning with dynamic tool selection
-Integrates external tools (order, customer, product, knowledge base)
-Makes structured decisions: refund, reply, or escalate
-Assigns confidence scores to each decision
-Re-validates conditions before executing irreversible actions like refunds
-Handles failures gracefully with retries, validation checks, and fallback mechanisms
-Maintains detailed logs for every ticket, including reasoning trace and tool interactions
+---
 
-<!-- System Architecture -->
+## Architecture
 
-The system is built around a modular agent pipeline:
+The system consists of:
 
-Reasoning Engine: Determines the next action based on current state
-Tool Execution Layer: Executes actions with retry and validation
-Decision Engine: Produces the final outcome with confidence
-Execution Handlers: Safely perform actions like refund, reply, or escalation
-Logging & Audit Layer: Captures full trace of execution
-Execution Flow
+1. Ticket Intake
+2. Agent Orchestrator
+3. Tool Layer
+4. Reliability Layer
+5. Execution + Audit
 
-Ticket → Reasoning → Tool Call → Observation → Decision → Action Execution
+---
 
-<!-- What Makes This System Unique -->
-Implements a true agent-based reasoning loop, not a fixed pipeline
-Separates reasoning, decision-making, and execution into independent modules
-Introduces safety gates for irreversible actions (e.g., refund re-validation)
-Uses confidence-based decisions instead of binary rules
-Maintains a complete audit trail for every action and decision
-Designed to simulate real-world production support systems, not just a demo
+## Tech Stack
 
-<!-- Project Structure -->
+* Python (asyncio)
+* FastAPI (optional services)
+* Gemini / OpenAI (optional LLM)
+* JSON-based mock DB
 
-app/ Entry point and configuration
-agent/ Reasoning engine, decision engine, orchestrator
-execution/ Async worker pool and task handling
-tools/ Tool implementations (order, refund, etc.)
-services/ Retry logic, logging, optional LLM integration
-models/ State and data models
-web/ FastAPI backend and frontend
-data/ Mock datasets
-docs/ Architecture and design notes
-scripts/ Tests and submission verification
+---
 
-<!-- Getting Started -->
-Install dependencies
+## Project Structure
+
+```
+.
+├── agent/
+├── tools/
+├── services/
+├── models/
+├── execution/
+├── data/
+├── logs/
+├── main.py
+├── requirements.txt
+├── README.md
+```
+
+---
+
+## Setup Instructions
+
+```bash
+git clone https://github.com/AkshatMishra007/hackathon2026-akshat-mishra.git
+cd hackathon2026-akshat-mishra
+
+python -m venv venv
+venv\Scripts\activate   # Windows
 
 pip install -r requirements.txt
+```
 
-Run the agent
+---
 
-python -m app.main
+## Run the Project
 
-Expected output:
-Processed 20 tickets. Logs saved to logs/
+```bash
+python main.py
+```
 
-<!-- Output Artifacts -->
-logs/*.json → Detailed per-ticket execution traces
-audit_log.json → Aggregated run summary
-logs/dead_letter_queue.jsonl → Failed executions (if any)
+---
 
-<!-- Web Interface  -->
+## Input
 
-Run using Docker:
-docker compose up --build
+* `data/tickets.json` → 20 support tickets
 
-Access the application at:
-http://localhost:8000
+---
 
-Available endpoints:
+## Output
 
-POST /api/run → Execute ticket processing
-GET /api/runs → View previous runs
+* `logs/<ticket_id>.json` → per-ticket logs
+* `audit_log.json` → full system trace
 
-For local execution without Docker:
-uvicorn web.api:app --host 127.0.0.1 --port 8000
+---
 
-<!-- Failure Handling Strategy -->
+## Agent Flow
 
-The system is designed to remain stable under various failure conditions:
+1. Reasoning engine selects next tool
+2. Orchestrator executes with retry + validation
+3. Observations are stored in state
+4. Decision engine determines:
 
-Tool failures are retried using a retry service
-Malformed tool responses are detected and logged
-Refund eligibility is re-checked before execution to prevent invalid actions
-Execution failures are routed to a dead-letter queue for inspection
-Errors increase the likelihood of escalation to ensure safety
+   * refund
+   * reply
+   * escalate
+5. Action is executed safely
 
-<!-- Configuration -->
+---
 
-Optional environment variables for tuning:
+## Failure Handling
 
-MAX_WORKERS=3
-MAX_REASONING_STEPS=6
-MAX_TOOL_RETRIES=2
-TOOL_FAILURE_RATE=0.15
-MALFORMED_DATA_RATE=0.08
-TOOL_TIMEOUT_SECONDS=1.0
+* Tool retries with backoff
+* Malformed data detection
+* Circuit breaker after repeated failures
+* Dead-letter queue for critical errors
 
-<!-- LLM Integration (Optional) -->
+---
 
-The system supports optional LLM-based reasoning.
+## Concurrency
 
-GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-1.5-flash
+* Worker pool processes multiple tickets concurrently using asyncio
+* Configurable via environment variables
 
-If the LLM is unavailable or produces invalid output, the system automatically falls back to rule-based reasoning.
+---
 
-<!-- Testing -->
+## Environment Variables (Optional)
 
-Run tests using:
-python scripts/run_ephemeral_tests.py
+Create a `.env` file if using API-based reasoning:
 
-<!-- Submission Readiness Check -->
+```
+OPENAI_API_KEY=your_key
+GEMINI_API_KEY=your_key
+```
 
-python scripts/verify_submission.py
+---
 
-This ensures:
+## Demo
 
-All required files are present
-audit_log.json is valid and complete
-All 20 tickets are processed
+Run the project and observe:
 
-<!-- Deliverables -->
+* Ticket processing in terminal
+* Logs generated in `/logs`
+* Full execution trace in `audit_log.json`
 
-README.md
-architecture.png
-failure_modes.md
-audit_log.json
+---
 
-<!-- Summary -->
+## Hackathon Requirements Covered
 
-This project demonstrates how an AI agent can be designed to operate reliably in real-world scenarios by combining structured reasoning, safe execution, and robust error handling. The system prioritizes correctness, explainability, and operational safety over simplistic automation.
+* ≥ 3 tool calls per ticket
+* Full audit trail
+* Autonomous decision making
+* Robust failure handling
